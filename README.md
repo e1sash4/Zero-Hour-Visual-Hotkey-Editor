@@ -26,6 +26,14 @@ Zero Hour Visual Hotkey Editor turns that process into something familiar:
 
 The editor reads the installed game, recreates its command-bar structure, extracts the required cameos locally, detects meaningful conflicts, and safely applies the result with an automatic backup.
 
+<p align="center">
+  <a href="docs/screenshots/main-window.png">
+    <img src="docs/screenshots/main-window.png" alt="Zero Hour Visual Hotkey Editor main window" width="100%">
+  </a>
+  <br>
+  <sub>The main workspace: faction navigation, real command icons, current bindings, and the interactive keyboard in one view.</sub>
+</p>
+
 ## Highlights
 
 ### A visual command bar
@@ -61,9 +69,25 @@ The editor understands that the same key can be valid in different command sets.
 
 When two commands really can appear together, the editor shows where the key is already used and lets you replace the old assignment or choose another key. It also detects shared CSF labels, where changing one shortcut necessarily affects several commands.
 
+<p align="center">
+  <a href="docs/screenshots/conflict-warning.png">
+    <img src="docs/screenshots/conflict-warning.png" alt="Context-aware hotkey conflict warning" width="553">
+  </a>
+  <br>
+  <sub>A conflict identifies the existing command and lets the user replace it, choose another key, or cancel.</sub>
+</p>
+
 ### Global game controls
 
 Command-bar hotkeys and global controls are both supported. The Global Hotkeys window reads `CommandMap.ini` and exposes actions such as attack, guard, selecting unit types, camera controls, and other game-wide shortcuts. Global changes have their own validation and backups.
+
+<p align="center">
+  <a href="docs/screenshots/global-hotkeys.png">
+    <img src="docs/screenshots/global-hotkeys.png" alt="Global Zero Hour hotkeys editor" width="760">
+  </a>
+  <br>
+  <sub>Search, inspect, assign, and remove game-wide keyboard shortcuts.</sub>
+</p>
 
 ### Safe by design
 
@@ -83,16 +107,37 @@ Command-bar hotkeys and global controls are both supported. The Global Hotkeys w
 - Choose **Modern Dark**, **Light**, or the faction-reactive **Zero Hour** theme.
 - Enable Developer Mode when technical IDs and asset sources are needed.
 
-## Screenshots
+<p align="center">
+  <a href="docs/screenshots/profile-manager.png">
+    <img src="docs/screenshots/profile-manager.png" alt="Hotkey profile manager" width="600">
+  </a>
+  <br>
+  <sub>Reusable layouts can be managed and shared without distributing a modified game file.</sub>
+</p>
 
-The application deliberately does not ship with screenshots containing copyrighted game cameos. Screenshots can be captured after indexing a legally installed local copy of Zero Hour and added under `docs/screenshots/` by project maintainers.
+### Faction-reactive Zero Hour theme
+
+The Zero Hour theme changes its colors and visual accents to match the currently selected faction.
+
+<table>
+  <tr>
+    <th width="33%">USA</th>
+    <th width="33%">China</th>
+    <th width="33%">GLA</th>
+  </tr>
+  <tr>
+    <td><a href="docs/screenshots/zero-hour-usa.png"><img src="docs/screenshots/zero-hour-usa.png" alt="USA Zero Hour theme"></a></td>
+    <td><a href="docs/screenshots/zero-hour-china.png"><img src="docs/screenshots/zero-hour-china.png" alt="China Zero Hour theme"></a></td>
+    <td><a href="docs/screenshots/zero-hour-gla.png"><img src="docs/screenshots/zero-hour-gla.png" alt="GLA Zero Hour theme"></a></td>
+  </tr>
+</table>
 
 ## Installation
 
 ### Download a Windows release
 
 1. Open the [Releases page](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/releases).
-2. Download the latest Windows ZIP archive.
+2. Download `ZeroHourHotkeyEditor-v0.1.0-Windows.zip` (or the newest available version).
 3. Extract the **entire** archive to a normal folder.
 4. Run `ZeroHourHotkeyEditor.exe` from the extracted folder.
 
