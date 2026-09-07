@@ -15,6 +15,8 @@ class Profile:
 
 class ProfileManager:
     VERSION = 1
+    GAME_DEFAULT_NAME = "Game Default"
+    IMPORTED_GAME_NAME = "Imported Game Settings"
 
     def __init__(self, directory: str | Path):
         self.directory = Path(directory)
@@ -27,13 +29,55 @@ class ProfileManager:
             raise ValueError("Profile name is empty")
         return safe
 
-    def save(self, profile: Profile) -> Path:
+    def _write(self, profile: Profile) -> Path:
         path = self.directory / f"{self._safe_name(profile.name)}.json"
         payload = {"version": self.VERSION, "name": profile.name, "read_only": profile.read_only, "bindings": profile.bindings}
         temp = path.with_suffix(".tmp")
         temp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         temp.replace(path)
         return path
+
+    def save(self, profile: Profile) -> Path:
+        path = self.directory / f"{self._safe_name(profile.name)}.json"
+        if path.exists() and self.load(path).read_only:
+            raise PermissionError("This profile is read-only")
+        return self._write(profile)
+
+    def save_game_default(self, bindings: dict[str, str | None]) -> Path:
+        """Create or refresh the one application-owned default profile."""
+        return self._write(Profile(self.GAME_DEFAULT_NAME, dict(bindings), True))
+
+    def capture_initial_game_settings(
+        self, bindings: dict[str, str | None] | None
+    ) -> tuple[Path | None, bool]:
+        """Capture a pre-existing loose CSF only during the first game scan.
+
+        A marker is written even when there is no loose file. This prevents a
+        loose CSF later created by this application from being mistaken for a
+        configuration that existed before the application was installed.
+        """
+        marker = self.directory / ".initial-game-settings-scanned"
+        if marker.exists():
+            return None, False
+
+        matched: Path | None = None
+        created = False
+        if bindings is not None:
+            for candidate in self.list():
+                try:
+                    if self.load(candidate).bindings == bindings:
+                        matched = candidate
+                        break
+                except (OSError, ValueError, TypeError):
+                    continue
+            if matched is None:
+                matched = self._write(Profile(self.IMPORTED_GAME_NAME, dict(bindings)))
+                created = True
+
+        temp = marker.with_suffix(".tmp")
+        temp.write_text("1\n", encoding="ascii")
+        temp.replace(marker)
+        return matched, created
 
     def load(self, path: str | Path) -> Profile:
         payload = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -63,4 +107,3 @@ class ProfileManager:
         if Path(path).resolve() != new_path.resolve():
             Path(path).unlink()
         return new_path
-

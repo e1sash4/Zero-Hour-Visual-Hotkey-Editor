@@ -13,4 +13,6 @@ logs/
 backups/
 backups-command-map/
 data/profiles/*.json
+data/profiles/.initial-game-settings-scanned
+data/mouse-bindings.json
 !data/profiles/.gitkeep

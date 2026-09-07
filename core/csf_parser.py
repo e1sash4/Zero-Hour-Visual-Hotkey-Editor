@@ -29,11 +29,16 @@ def _u32(stream: io.BytesIO) -> int:
 
 
 def _decode_value(raw: bytes) -> str:
-    return bytes((~byte) & 0xFF for byte in raw).decode("utf-16-le", errors="strict")
+    # Some community translations and older CSF tools leave unpaired UTF-16
+    # surrogate code units in otherwise valid files.  Python's strict decoder
+    # rejects those files even though Zero Hour accepts them.  surrogatepass
+    # keeps the original code units intact so an unrelated hotkey edit can be
+    # written back without silently deleting or replacing any bytes.
+    return bytes((~byte) & 0xFF for byte in raw).decode("utf-16-le", errors="surrogatepass")
 
 
 def _encode_value(value: str) -> bytes:
-    return bytes((~byte) & 0xFF for byte in value.encode("utf-16-le"))
+    return bytes((~byte) & 0xFF for byte in value.encode("utf-16-le", errors="surrogatepass"))
 
 
 @dataclass(slots=True)

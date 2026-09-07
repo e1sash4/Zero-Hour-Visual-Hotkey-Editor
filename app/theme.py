@@ -11,6 +11,9 @@ QListWidget::item { padding: 9px; border-radius: 5px; }
 QScrollArea { border: none; }
 QProgressBar { border-radius: 6px; text-align: center; }
 QFrame#commandCard[selected="true"] { border: 2px solid #e7bd5d; }
+QLabel { background: transparent; }
+QLabel#commandHotkey { font-size: 15pt; font-weight: 700; }
+QLabel#commandFallbackIcon { font-size: 30pt; }
 '''
 DARK_STYLE = _BASE + '''
 QMainWindow, QDialog, QWidget { background: #121820; color: #e8edf2; }
@@ -24,18 +27,32 @@ QListWidget::item:selected { background: #29465e; }
 QProgressBar { border: 1px solid #344353; background: #1a222c; }
 QProgressBar::chunk { background: #4f88b3; border-radius: 5px; }
 QFrame#commandCard { background:#1b2530; border:2px solid #344353; border-radius:9px; }
+QLabel#commandHotkey { color: #f1c76a; }
+QLabel#commandFallbackIcon, QLabel#captureHint { color: #aebdca; }
+QLabel#linkedHint { color: #d9bd78; }
 '''
 LIGHT_STYLE = _BASE + '''
-QMainWindow, QDialog, QWidget { background: #eef1f4; color: #202832; }
-QToolBar, QStatusBar { background: #dde3e8; color: #43515e; }
-QPushButton, QToolButton, QComboBox, QLineEdit { background: #ffffff; border: 1px solid #aeb9c3; }
-QPushButton:hover, QToolButton:hover { background: #f4f8fb; border-color: #6687a3; }
-QPushButton:checked { background: #c9dfef; border-color: #5e8caf; }
-QListWidget { background: #ffffff; border: 1px solid #b9c3cc; }
-QListWidget::item:selected { background: #cde2f1; }
-QProgressBar { border: 1px solid #aeb9c3; background: #ffffff; }
-QProgressBar::chunk { background: #6a9ec3; }
-QFrame#commandCard { background:#ffffff; border:2px solid #b5c0ca; border-radius:9px; }
+QMainWindow, QDialog, QWidget { background: #f3f6f8; color: #18242e; }
+QToolBar, QStatusBar { background: #dfe7ec; color: #263946; border-bottom: 1px solid #aab9c4; }
+QPushButton, QToolButton, QComboBox, QLineEdit {
+    background: #ffffff; color: #18242e; border: 1px solid #879aa8;
+}
+QPushButton:hover, QToolButton:hover { background: #eaf3f8; border-color: #466f8b; }
+QPushButton:checked { background: #b9d9ed; color: #102f43; border: 2px solid #3f779c; }
+QPushButton:disabled { background: #e5eaee; color: #687985; border-color: #bac5cc; }
+QLineEdit:focus, QComboBox:focus { border: 2px solid #477d9f; }
+QComboBox QAbstractItemView { background: #ffffff; color: #18242e; selection-background-color: #b9d9ed; }
+QListWidget { background: #ffffff; color: #18242e; border: 1px solid #9cabb6; }
+QListWidget::item:hover { background: #edf4f8; }
+QListWidget::item:selected { background: #b9d9ed; color: #102f43; }
+QProgressBar { border: 1px solid #879aa8; background: #ffffff; color: #18242e; }
+QProgressBar::chunk { background: #518caf; }
+QFrame#commandCard { background:#ffffff; border:2px solid #9cabb6; border-radius:9px; }
+QFrame#commandCard:hover { border-color: #477d9f; background: #f7fbfd; }
+QFrame#commandCard[selected="true"] { border-color: #b07814; background: #fff5d9; }
+QLabel#commandHotkey { color: #795000; }
+QLabel#commandFallbackIcon, QLabel#captureHint { color: #526979; }
+QLabel#linkedHint { color: #76520b; }
 '''
 STYLES = {"dark": DARK_STYLE, "light": LIGHT_STYLE}
 FACTION_ACCENTS = {"USA": "#4d86b8", "China": "#a84d4d", "GLA": "#6f8e55"}
@@ -99,6 +116,8 @@ QFrame#commandCard {{
 }}
 QFrame#commandCard:hover {{ border-color: {p["accent"]}; background: {p["hover"]}; }}
 QFrame#commandCard[selected="true"] {{ border: 3px solid {p["accent"]}; background: {p["selected"]}; }}
+QLabel#commandHotkey, QLabel#linkedHint {{ color: {p["accent"]}; }}
+QLabel#commandFallbackIcon, QLabel#captureHint {{ color: {p["metal"]}; }}
 QMenu {{ background: {p["panel"]}; color: {p["text"]}; border: 2px solid {p["metal"]}; padding: 3px; }}
 QMenu::item {{ padding: 6px 24px 6px 10px; border: 1px solid transparent; }}
 QMenu::item:selected {{ background: {p["selected"]}; border-color: {p["accent"]}; }}

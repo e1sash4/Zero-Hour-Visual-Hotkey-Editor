@@ -15,8 +15,12 @@ from PySide6.QtWidgets import (
 from core.backup_manager import BackupManager
 from core.csf_parser import CsfFile
 from core.command_map import CommandMapFile
-from core.hotkey_manager import HotkeyManager, VALID_KEYS
-from core.indexer import GameIndexer
+from core.hotkey_manager import (
+    DEFAULT_MOUSE_KEYS, LEGACY_MOUSE_KEYS, MOUSE_BUTTONS, HotkeyManager, VALID_BINDINGS, VALID_KEYS,
+)
+from core.indexer import CsfLoadError, GameIndexer
+from core.mouse_bindings import MouseBindingStore
+from core.mouse_remapper import MouseRemapper
 from core.profile_manager import Profile, ProfileManager
 from models import CommandContext
 from ui.command_grid import CommandGrid
@@ -63,6 +67,10 @@ class IndexWorker(QObject):
             indexer = GameIndexer(self.game_dir, self.app_root)
             db, csf, assets = indexer.build(lambda p, m: self.progress.emit(p, m))
             self.ready.emit(db, csf, assets, indexer.csf_source)
+        except CsfLoadError as exc:
+            logging.exception("Could not read CSF")
+            message_id = "loose_csf_invalid" if exc.loose_override else "archive_csf_invalid"
+            self.failed.emit(tr(message_id, path=exc.path, error=exc.reason))
         except Exception as exc:
             logging.exception("Indexing failed")
             self.failed.emit(str(exc))
@@ -77,6 +85,7 @@ class MainWindow(QMainWindow):
         self.developer = settings.value("developerMode", False, bool)
         self.language = settings.value("language", "uk", str)
         self.theme_name = settings.value("theme", "dark", str)
+        self.mouse_remapping_enabled = settings.value("mouseRemapping", True, bool)
         self.db = None
         self.csf = None
         self.source_csf = b""
@@ -89,6 +98,20 @@ class MainWindow(QMainWindow):
         self.capture_active = False
         self.context_by_search_row: list[CommandContext] = []
         self.profiles = ProfileManager(app_root / "data/profiles")
+        self.mouse_binding_store = MouseBindingStore(app_root / "data/mouse-bindings.json")
+        self.saved_mouse_bindings = self.mouse_binding_store.load()
+        stored_proxies = self.mouse_binding_store.load_proxies()
+        fallback_proxies = stored_proxies or (LEGACY_MOUSE_KEYS if self.saved_mouse_bindings else DEFAULT_MOUSE_KEYS)
+        configured_proxies = {
+            button: settings.value(f"mouseProxy{button}", fallback_proxies[button], str).upper()
+            for button in MOUSE_BUTTONS
+        }
+        if (not set(configured_proxies.values()) <= VALID_KEYS
+                or len(set(configured_proxies.values())) != len(configured_proxies)):
+            configured_proxies = dict(fallback_proxies)
+        self.mouse_proxy_keys = configured_proxies
+        self.applied_mouse_proxy_keys = dict(configured_proxies)
+        self.mouse_remapper = MouseRemapper(game_dir)
         self.backups = BackupManager(app_root / "backups")
         self.command_map_backups = BackupManager(
             app_root / "backups-command-map",
@@ -147,10 +170,10 @@ class MainWindow(QMainWindow):
         self.breadcrumb = QLabel(tr("indexing"))
         self.breadcrumb.setStyleSheet("font-size: 13pt; font-weight: 600;")
         self.capture_label = QLabel(tr("select_command"))
-        self.capture_label.setStyleSheet("color: #aebdca;")
+        self.capture_label.setObjectName("captureHint")
         self.linked_label = QLabel()
         self.linked_label.setWordWrap(True)
-        self.linked_label.setStyleSheet("color: #d9bd78;")
+        self.linked_label.setObjectName("linkedHint")
         self.grid = CommandGrid()
         self.grid.command_clicked.connect(self._begin_capture)
         scroll = QScrollArea()
@@ -239,15 +262,32 @@ class MainWindow(QMainWindow):
         self.db, self.csf, self.assets, self.source_csf = db, csf, _assets, source_csf
         self.command_map_source = self.assets.index.read(r"Data\English\CommandMap.ini")
         self.command_map = CommandMapFile.parse(self.command_map_source.decode("utf-8-sig", errors="replace"))
-        self.hotkeys = HotkeyManager(csf, db.contexts)
+        self.hotkeys = HotkeyManager(csf, db.contexts, self.saved_mouse_bindings, self.mouse_proxy_keys)
         self.clear_all_action.setEnabled(True)
         self.progress.hide()
         self.select_faction("USA")
-        default = self.profiles.directory / "Game Default.json"
-        if not default.exists():
-            bindings = {c.button.text_label: self.hotkeys.get_hotkey(c) for c in db.contexts if c.button.text_label}
-            self.profiles.save(Profile("Game Default", bindings, True))
-        self.statusBar().showMessage(tr("indexed", count=len(db.contexts), warnings=len(db.warnings)), 8000)
+        current_bindings = None
+        if (self.game_dir / "Data/English/generals.csf").is_file():
+            current_bindings = {
+                context.button.text_label: self.hotkeys.get_hotkey(context)
+                for context in db.contexts if context.button.text_label
+            }
+        _path, imported_profile_created = self.profiles.capture_initial_game_settings(current_bindings)
+        # Refresh this on every indexing pass. Packaged builds keep profiles in
+        # LocalAppData, so a create-once snapshot could otherwise retain the
+        # user's old bindings indefinitely. Always derive it from the pristine
+        # archive CSF, never from the active loose override.
+        default_hotkeys = HotkeyManager(CsfFile.from_bytes(source_csf), db.contexts)
+        default_bindings = {
+            context.button.text_label: default_hotkeys.get_hotkey(context)
+            for context in db.contexts if context.button.text_label
+        }
+        self.profiles.save_game_default(default_bindings)
+        self._sync_mouse_remapper()
+        status = tr("indexed", count=len(db.contexts), warnings=len(db.warnings))
+        if imported_profile_created:
+            status += " • " + tr("existing_profile_imported")
+        self.statusBar().showMessage(status, 12000 if imported_profile_created else 8000)
 
     @Slot(str)
     def _on_failed(self, message: str) -> None:
@@ -367,6 +407,16 @@ class MainWindow(QMainWindow):
         super().keyPressEvent(event)
 
     def eventFilter(self, watched, event) -> bool:
+        if (self.capture_active and self.isActiveWindow()
+                and event.type() == QEvent.Type.MouseButtonPress):
+            mouse_keys = {
+                Qt.MouseButton.MiddleButton: "M3",
+                Qt.MouseButton.XButton1: "M4",
+                Qt.MouseButton.XButton2: "M5",
+            }
+            if key := mouse_keys.get(event.button()):
+                self._assign_key(key)
+                return True
         if self.capture_active and self.isActiveWindow() and event.type() == QEvent.Type.KeyPress:
             if event.isAutoRepeat():
                 return True
@@ -421,8 +471,8 @@ class MainWindow(QMainWindow):
     def _update_keyboard(self) -> None:
         if not self.hotkeys:
             return
-        states = {key: "unused" for key in VALID_KEYS}
-        details = {key: [] for key in VALID_KEYS}
+        states = {key: "unused" for key in VALID_BINDINGS}
+        details = {key: [] for key in VALID_BINDINGS}
         for context in self._filtered():
             if key := self.hotkeys.get_hotkey(context):
                 states[key] = "used"
@@ -562,6 +612,12 @@ class MainWindow(QMainWindow):
         backup = self.backups.create(target, self.source_csf)
         data = self.hotkeys.materialize().to_bytes()
         self.backups.atomic_write(target, data)
+        self.mouse_binding_store.save(self.hotkeys.mouse_bindings, self.hotkeys.mouse_keys)
+        self.mouse_proxy_keys = dict(self.hotkeys.mouse_keys)
+        self.applied_mouse_proxy_keys = dict(self.hotkeys.mouse_keys)
+        for button, key in self.mouse_proxy_keys.items():
+            self.settings.setValue(f"mouseProxy{button}", key)
+        self._sync_mouse_remapper()
         self.hotkeys.pending.clear()
         self.hotkeys.undo_stack.clear()
         self.hotkeys.redo_stack.clear()
@@ -576,6 +632,10 @@ class MainWindow(QMainWindow):
             target = self.game_dir / "Data/English/generals.csf"
             self.backups.create(target, self.source_csf)
             self.backups.restore(latest, target)
+            if self.hotkeys:
+                self.hotkeys.mouse_bindings.clear()
+                self.mouse_binding_store.save({}, self.applied_mouse_proxy_keys)
+                self._sync_mouse_remapper()
             QMessageBox.information(self, tr("restored"), tr("latest_restored"))
         except Exception as exc:
             QMessageBox.critical(self, tr("restore_failed"), str(exc))
@@ -588,6 +648,10 @@ class MainWindow(QMainWindow):
         try:
             self.backups.create(target)
             target.unlink()
+            if self.hotkeys:
+                self.hotkeys.mouse_bindings.clear()
+                self.mouse_binding_store.save({}, self.applied_mouse_proxy_keys)
+                self._sync_mouse_remapper()
             QMessageBox.information(self, tr("restored"), tr("original_restored"))
         except Exception as exc:
             QMessageBox.critical(self, tr("restore_failed"), str(exc))
@@ -650,14 +714,33 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, tr("profile"), str(exc))
 
     def show_settings(self) -> None:
-        dialog = SettingsDialog(str(self.game_dir), self.developer, self.language, self.theme_name, self)
+        dialog = SettingsDialog(str(self.game_dir), self.developer, self.language, self.theme_name,
+                                self.mouse_remapping_enabled, self.mouse_proxy_keys, self)
         if dialog.exec():
+            proxy_keys = dialog.proxy_keys()
+            if len(set(proxy_keys.values())) != len(proxy_keys):
+                QMessageBox.warning(self, tr("mouse_remapping"), tr("mouse_proxy_duplicate"))
+                return
             self.developer = dialog.developer.isChecked()
             self.language = dialog.language.currentData()
             self.theme_name = dialog.theme.currentData()
+            self.mouse_remapping_enabled = dialog.mouse_remapping.isChecked()
+            self.mouse_proxy_keys = proxy_keys
+            if self.hotkeys:
+                self.hotkeys.set_mouse_proxy_keys(proxy_keys)
             self.settings.setValue("developerMode", self.developer)
             self.settings.setValue("language", self.language)
             self.settings.setValue("theme", self.theme_name)
+            self.settings.setValue("mouseRemapping", self.mouse_remapping_enabled)
+            if not self.hotkeys or not self.hotkeys.pending:
+                self.applied_mouse_proxy_keys = dict(proxy_keys)
+                self.mouse_binding_store.save(
+                    self.hotkeys.mouse_bindings if self.hotkeys else {}, proxy_keys
+                )
+                for button, key in proxy_keys.items():
+                    self.settings.setValue(f"mouseProxy{button}", key)
+            self._refresh_after_change()
+            self._sync_mouse_remapper()
             set_language(self.language)
             QApplication.instance().setStyleSheet(style_for(self.theme_name, self.faction))
             current_faction = self.faction
@@ -670,6 +753,23 @@ class MainWindow(QMainWindow):
             current_item = self.producer_list.currentItem()
             self._producer_selected((current_item.data(Qt.ItemDataRole.UserRole) or current_item.text())
                                     if current_item else "")
+
+    def _sync_mouse_remapper(self) -> None:
+        if not self.hotkeys:
+            return
+        used = {
+            binding for context in self.hotkeys.contexts
+            if (binding := self.hotkeys.get_hotkey(context)) in MOUSE_BUTTONS
+        }
+        mapping = {
+            button: proxy for button, proxy in self.applied_mouse_proxy_keys.items()
+            if button in used
+        }
+        self.mouse_remapper.update(mapping, self.mouse_remapping_enabled)
+
+    def closeEvent(self, event) -> None:
+        self.mouse_remapper.stop()
+        super().closeEvent(event)
 
     def show_global_hotkeys(self) -> None:
         if not self.command_map_source or not self.csf or not self.assets:

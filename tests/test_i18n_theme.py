@@ -1,6 +1,7 @@
 from app.i18n import set_language, tr
 from app.main_window import FACTION_LOGOS, GENERAL_ICONS
 from app.theme import style_for
+from ui.keyboard_widget import input_theme
 
 
 def test_ukrainian_and_russian_translations():
@@ -21,7 +22,7 @@ def test_themes_and_faction_logo_mappings_are_complete():
     assert "#061116" in usa
     assert "#160907" in china
     assert "#071008" in gla
-    assert "#eef1f4" in style_for("light")
+    assert "#f3f6f8" in style_for("light")
     assert FACTION_LOGOS == {
         "USA": "SAFactionLogo144_US",
         "China": "SNFactionLogo144_China",
@@ -37,4 +38,16 @@ def test_themes_and_faction_logo_mappings_are_complete():
 def test_global_hotkey_translation_exists():
     set_language("uk")
     assert tr("global_hotkeys") == "Глобальні хоткеї…"
+    error = tr("loose_csf_invalid", path="C:/Game/generals.csf", error="bad data")
+    assert "C:/Game/generals.csf" in error
+    assert "Рекомендації" in error
     set_language("en")
+
+
+def test_input_visuals_follow_theme_and_zero_hour_faction():
+    assert input_theme("zero_hour", "USA")["mouse"]["body"] == "#071d25"
+    assert input_theme("zero_hour", "China")["mouse"]["body"] == "#2a100c"
+    assert input_theme("zero_hour", "GLA")["mouse"]["body"] == "#0b1b0d"
+    light = input_theme("light", "USA")
+    assert light["keys"]["unused"] == "#ffffff"
+    assert light["key_text"] == "#182733"

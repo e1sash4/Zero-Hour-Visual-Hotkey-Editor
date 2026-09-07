@@ -41,6 +41,10 @@ class ArchiveIndex:
         loose = self.game_dir / name.replace("/", "\\")
         if loose.is_file():
             return loose.read_bytes()
+        return self.read_archive(name)
+
+    def read_archive(self, name: str) -> bytes:
+        """Read from the BIG overlay while deliberately ignoring loose files."""
         item = self.members.get(normalize_member(name)) or self.find_basename(name)
         if not item:
             raise KeyError(name)

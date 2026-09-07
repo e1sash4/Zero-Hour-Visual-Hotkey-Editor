@@ -3,6 +3,7 @@ import struct
 import pytest
 
 from core.big_reader import BigArchive, BigFormatError
+from core.archive_index import ArchiveIndex
 
 
 def make_big(path, files: dict[str, bytes]):
@@ -32,3 +33,15 @@ def test_big_rejects_out_of_bounds_entry(tmp_path):
     with pytest.raises(BigFormatError):
         BigArchive(path)
 
+
+def test_archive_index_can_bypass_loose_override(tmp_path):
+    archived = b"archive default"
+    make_big(tmp_path / "EnglishZH.big", {r"Data\English\generals.csf": archived})
+    loose = tmp_path / "Data/English/generals.csf"
+    loose.parent.mkdir(parents=True)
+    loose.write_bytes(b"user override")
+
+    index = ArchiveIndex(tmp_path, archives=["EnglishZH.big"])
+
+    assert index.read(r"Data\English\generals.csf") == b"user override"
+    assert index.read_archive(r"Data\English\generals.csf") == archived

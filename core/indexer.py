@@ -9,7 +9,7 @@ from models import CommandContext, GameDatabase
 from .archive_index import ArchiveIndex
 from .asset_manager import AssetManager
 from .command_parser import parse_command_buttons, parse_command_sets, parse_objects
-from .csf_parser import CsfFile
+from .csf_parser import CsfFile, CsfFormatError
 from .ini_parser import decode_ini
 from .mapped_image_parser import parse_mapped_images
 
@@ -46,6 +46,14 @@ GENERAL_POWER_EXCLUSIONS = {
     ("China", "Vanilla"): {"Command_NapalmStrike"},
     ("China", "Nuclear"): {"Command_NapalmStrike"},
 }
+
+
+class CsfLoadError(ValueError):
+    def __init__(self, path: Path, loose_override: bool, reason: Exception):
+        super().__init__(str(reason))
+        self.path = path
+        self.loose_override = loose_override
+        self.reason = reason
 
 
 def producer_overrides() -> dict[str, set[str]]:
@@ -99,9 +107,22 @@ class GameIndexer:
         self.game_dir = Path(game_dir)
         self.app_root = Path(app_root)
         self.resources = ArchiveIndex(self.game_dir)
-        self.csf_source = self.resources.read(r"Data\English\generals.csf")
+        # Keep the archive copy separate from a loose, user-modified override.
+        # It is the authoritative source for the built-in Game Default profile
+        # and for restoring the installation default.
+        self.csf_source = self.resources.read_archive(r"Data\English\generals.csf")
+        try:
+            archive_csf = CsfFile.from_bytes(self.csf_source)
+        except (CsfFormatError, UnicodeError) as exc:
+            raise CsfLoadError(self.game_dir / "EnglishZH.big", False, exc) from exc
         loose = self.game_dir / "Data/English/generals.csf"
-        self.csf = CsfFile.from_bytes(loose.read_bytes() if loose.is_file() else self.csf_source)
+        if loose.is_file():
+            try:
+                self.csf = CsfFile.from_bytes(loose.read_bytes())
+            except (CsfFormatError, UnicodeError) as exc:
+                raise CsfLoadError(loose, True, exc) from exc
+        else:
+            self.csf = archive_csf
 
     def build(self, progress: Callable[[int, str], None] | None = None) -> tuple[GameDatabase, CsfFile, AssetManager]:
         report = progress or (lambda _percent, _message: None)

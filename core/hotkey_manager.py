@@ -7,6 +7,10 @@ from .csf_parser import CsfFile, extract_hotkey, set_hotkey_marker
 
 
 VALID_KEYS = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+DEFAULT_MOUSE_KEYS = {"M3": "7", "M4": "8", "M5": "9"}
+LEGACY_MOUSE_KEYS = {"M3": "8", "M4": "9", "M5": "0"}
+MOUSE_BUTTONS = tuple(DEFAULT_MOUSE_KEYS)
+VALID_BINDINGS = VALID_KEYS | set(MOUSE_BUTTONS)
 FALLBACK_HOTKEYS = {"controlbar:sell": "L"}
 
 
@@ -18,9 +22,21 @@ class HotkeyChange:
 
 
 class HotkeyManager:
-    def __init__(self, csf: CsfFile, contexts: list[CommandContext]):
+    def __init__(self, csf: CsfFile, contexts: list[CommandContext],
+                 mouse_bindings: dict[str, str] | None = None,
+                 mouse_keys: dict[str, str] | None = None):
         self.csf = csf
         self.contexts = contexts
+        self.mouse_keys = dict(mouse_keys or DEFAULT_MOUSE_KEYS)
+        if set(self.mouse_keys) != set(MOUSE_BUTTONS) or not set(self.mouse_keys.values()) <= VALID_KEYS:
+            raise ValueError("Invalid mouse proxy key configuration")
+        if len(set(self.mouse_keys.values())) != len(self.mouse_keys):
+            raise ValueError("Mouse proxy keys must be unique")
+        self.mouse_bindings = {
+            str(label).casefold(): str(button).upper()
+            for label, button in (mouse_bindings or {}).items()
+            if str(button).upper() in MOUSE_BUTTONS
+        }
         self.pending: dict[str, str | None] = {}
         self.undo_stack: list[list[HotkeyChange]] = []
         self.redo_stack: list[list[HotkeyChange]] = []
@@ -31,17 +47,34 @@ class HotkeyManager:
             return self.pending[label]
         text = self.csf.get(command.button.text_label)
         parsed = extract_hotkey(text) if text else None
+        mouse = self.mouse_bindings.get(label)
+        if mouse and parsed == self.mouse_keys[mouse]:
+            return mouse
         return parsed or FALLBACK_HOTKEYS.get(label)
+
+    def storage_key(self, binding: str | None) -> str | None:
+        return self.mouse_keys.get(binding or "", binding)
+
+    def set_mouse_proxy_keys(self, mouse_keys: dict[str, str]) -> None:
+        normalized = {button: key.upper() for button, key in mouse_keys.items()}
+        if set(normalized) != set(MOUSE_BUTTONS) or not set(normalized.values()) <= VALID_KEYS:
+            raise ValueError("Invalid mouse proxy key configuration")
+        if len(set(normalized.values())) != len(normalized):
+            raise ValueError("Mouse proxy keys must be unique")
+        for label, button in self.mouse_bindings.items():
+            if self.mouse_keys[button] != normalized[button]:
+                self.pending[label] = button
+        self.mouse_keys = normalized
 
     def set_hotkey(self, command: CommandContext, key: str | None) -> None:
         if key:
             key = key.upper()
-            if key not in VALID_KEYS:
-                raise ValueError("Zero Hour CSF hotkeys are limited to A-Z and 0-9")
+            if key not in VALID_BINDINGS:
+                raise ValueError("Zero Hour hotkeys support A-Z, 0-9, M3, M4 and M5")
             text = self.csf.get(command.button.text_label)
             if text is None:
                 raise KeyError(command.button.text_label)
-            set_hotkey_marker(text, key)  # Validate occurrence before queuing.
+            set_hotkey_marker(text, self.storage_key(key))  # Validate before queuing.
         label = command.button.text_label.casefold()
         before = self.get_hotkey(command)
         if before == key:
@@ -95,7 +128,7 @@ class HotkeyManager:
         return [item for item in self.contexts
                 if item.identity != command.identity and item.command_set_id == command.command_set_id
                 and item.button.text_label.casefold() != command.button.text_label.casefold()
-                and self.get_hotkey(item) == key]
+                and self.storage_key(self.get_hotkey(item)) == self.storage_key(key)]
 
     def undo(self) -> bool:
         if not self.undo_stack:
@@ -121,5 +154,9 @@ class HotkeyManager:
             label = labels.get(folded)
             if not label or not label.values:
                 continue
-            label.values[0].text = set_hotkey_marker(label.values[0].text, key)
+            label.values[0].text = set_hotkey_marker(label.values[0].text, self.storage_key(key))
+            if key in MOUSE_BUTTONS:
+                self.mouse_bindings[folded] = key
+            else:
+                self.mouse_bindings.pop(folded, None)
         return self.csf

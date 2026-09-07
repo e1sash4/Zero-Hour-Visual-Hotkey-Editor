@@ -14,6 +14,16 @@ def test_csf_round_trip_is_lossless():
     assert CsfFile.from_bytes(data).to_bytes() == data
 
 
+def test_csf_round_trip_preserves_unpaired_utf16_surrogate():
+    # Real-world CSFs produced by some older community tools can contain a
+    # lone surrogate. Zero Hour tolerates it, so the editor must preserve it.
+    data = CsfFile(labels=[CsfLabel("BROKEN_TEXT", [CsfValue("A\ud800B")])]).to_bytes()
+    parsed = CsfFile.from_bytes(data)
+
+    assert parsed.get("BROKEN_TEXT") == "A\ud800B"
+    assert parsed.to_bytes() == data
+
+
 def test_hotkey_marker_manipulation():
     assert extract_hotkey("Hum&vee") == "V"
     assert set_hotkey_marker("Hum&vee", "H") == "&Humvee"

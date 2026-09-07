@@ -39,7 +39,8 @@ class ProfileDialog(QDialog):
         self.list.clear()
         for path in self.paths:
             profile = self.manager.load(path)
-            self.list.addItem(profile.name + (f"  • {tr('game_default')}" if profile.read_only else ""))
+            name = tr("imported_game_profile") if profile.name == self.manager.IMPORTED_GAME_NAME else profile.name
+            self.list.addItem(name + (f"  • {tr('game_default')}" if profile.read_only else ""))
 
     def current(self) -> Path | None:
         row = self.list.currentRow()

@@ -32,6 +32,44 @@ def test_undo_redo():
     assert manager.redo() and manager.get_hotkey(item) == "H"
 
 
+def test_mouse_binding_uses_proxy_key_and_survives_reload():
+    item = context("Humvee", "HUMVEE", "Factory", 1)
+    csf = CsfFile(labels=[CsfLabel("HUMVEE", [CsfValue("Humvee")])])
+    manager = HotkeyManager(csf, [item])
+
+    manager.set_hotkey(item, "M4")
+    assert manager.get_hotkey(item) == "M4"
+    data = manager.materialize().to_bytes()
+    assert manager.mouse_bindings == {"humvee": "M4"}
+
+    restored = HotkeyManager(CsfFile.from_bytes(data), [item], manager.mouse_bindings)
+    assert restored.get_hotkey(item) == "M4"
+
+
+def test_mouse_proxy_conflicts_with_its_underlying_keyboard_key():
+    mouse = context("Humvee", "HUMVEE", "Factory", 1)
+    keyboard = context("Ranger", "RANGER", "Factory", 2)
+    manager = HotkeyManager(
+        CsfFile(labels=[CsfLabel("HUMVEE", [CsfValue("Humvee")]),
+                        CsfLabel("RANGER", [CsfValue("Ranger (&8)")])]),
+        [mouse, keyboard],
+    )
+
+    assert manager.get_conflicts(mouse, "M4") == [keyboard]
+
+
+def test_mouse_proxy_keys_can_be_changed_and_are_rewritten():
+    item = context("Humvee", "HUMVEE", "Factory", 1)
+    csf = CsfFile(labels=[CsfLabel("HUMVEE", [CsfValue("Humvee (&8)")])])
+    manager = HotkeyManager(csf, [item], {"humvee": "M4"})
+
+    manager.set_mouse_proxy_keys({"M3": "4", "M4": "5", "M5": "6"})
+
+    assert manager.get_hotkey(item) == "M4"
+    manager.materialize()
+    assert manager.csf.get("HUMVEE").endswith("(&5)")
+
+
 def test_clear_all_is_one_undoable_action_and_deduplicates_shared_labels():
     humvee = context("Humvee", "HUMVEE", "Factory", 1)
     linked_humvee = context("AirF Humvee", "HUMVEE", "AirFFactory", 1)

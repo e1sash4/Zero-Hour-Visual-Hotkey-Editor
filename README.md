@@ -62,6 +62,9 @@ Unused and debug factions are hidden from the normal interface.
 - Right-click a virtual key to remove one specific binding or every binding assigned to it.
 - Clear all faction command-bar bindings in one action.
 - Use **Ctrl+Z** and **Ctrl+Y** before applying changes.
+- Bind commands to standard mouse buttons **M3**, **M4**, and **M5**. The editor remaps them only while Zero Hour is the foreground application and must remain running during play.
+
+The mouse diagram beside the virtual keyboard shows left/right buttons for orientation and provides clickable M3/M4/M5 zones. Mouse bindings use configurable internal CSF keys; the less commonly used **7**, **8**, and **9** are selected by default and can be changed in Settings. While the game is active, the editor translates those mouse presses into hardware-style keyboard scan codes for compatibility with Zero Hour's legacy input handling. If the game is launched as administrator, the editor must be launched as administrator too. Windows exposes the middle button and two side buttons through its standard mouse API. Gaming mice with additional vendor-specific buttons should map those buttons to keyboard keys in the mouse manufacturer's software.
 
 ### Context-aware conflict detection
 
@@ -137,7 +140,7 @@ The Zero Hour theme changes its colors and visual accents to match the currently
 ### Download a Windows release
 
 1. Open the [Releases page](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/releases).
-2. Download `ZeroHourHotkeyEditor-v0.1.0-Windows.zip` (or the newest available version).
+2. Download `ZeroHourHotkeyEditor-v0.2.0-Windows.zip` (or the newest available version).
 3. Extract the **entire** archive to a normal folder.
 4. Run `ZeroHourHotkeyEditor.exe` from the extracted folder.
 
