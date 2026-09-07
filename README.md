@@ -1,50 +1,211 @@
-# Zero Hour Visual Hotkey Editor
+<div align="center">
+  <img src="assets/app_icon.png" alt="Zero Hour Visual Hotkey Editor" width="180">
 
-A working Windows desktop editor for **Command & Conquer: Generals — Zero Hour** hotkeys. It replaces raw `CONTROLBAR:` identifiers with the game's own locally extracted command icons, the producer/building, localized name, and current key.
+  # Zero Hour Visual Hotkey Editor
 
-> This project does **not** contain Electronic Arts images, audio, text tables, or other game resources. Every cameo is read from the user's installed game and cached locally. Deleting `cache/icons` is safe; the editor rebuilds it.
+  **A visual, safe, and faction-aware hotkey editor for<br>
+  Command & Conquer: Generals — Zero Hour**
 
-## MVP status
+  [![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-2874A6?logo=windows)](https://www.microsoft.com/windows)
+  [![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+  [![PySide6](https://img.shields.io/badge/GUI-PySide6-41CD52?logo=qt&logoColor=white)](https://doc.qt.io/qtforpython-6/)
+  [![License](https://img.shields.io/badge/License-MIT-D4A72C)](LICENSE)
 
-The current build can:
+  [Download](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/releases) · [Report a bug](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/issues) · [Build from source](#building-from-source)
+</div>
 
-- auto-detect the Steam/EA installation or let the user select it;
-- read validated BIG4/BIGF archives without FinalBIG;
-- parse MappedImage, CommandButton, CommandSet and Object/ChildObject INI data;
-- resolve the chain `faction/general → producer → CommandSet slot → CommandButton → ButtonImage/TextLabel`;
-- crop real TGA cameos with Pillow and cache only referenced images;
-- read and byte-for-byte round-trip the real `generals.csf` string table;
-- show USA, China and GLA plus all nine standard generals;
-- capture A–Z/0–9 from the active editor window or its virtual keyboard;
-- detect conflicts only inside the same CommandSet;
-- identify shared CSF labels and explain that one edit affects all linked commands;
-- queue edits in memory, show an unsaved count, and support Ctrl+Z/Ctrl+Y;
-- safely Apply through a validated temporary file and automatic backup;
-- restore the latest backup or remove the override to return to the archive original;
-- create, import, export, duplicate, rename, delete and apply logical JSON profiles;
-- search commands and jump to their producer;
-- expose technical IDs in Developer Mode;
-- switch the interface live between English, Ukrainian and Russian;
-- switch between Modern Dark, Zero Hour-styled and Light themes;
-- extract and display the original USA, China and GLA faction emblems from the local game;
-- index on a background Qt thread with progress and diagnostics;
-- produce a reliable one-folder Windows build with PyInstaller.
+---
 
-## Screenshot
+## Make Zero Hour hotkeys feel natural
 
-Screenshot placeholder — run the app against a local Zero Hour installation so copyrighted game cameos are never committed to this repository.
+Zero Hour normally stores command-bar shortcuts inside localized text resources. Editing them by hand means working with technical identifiers such as `CONTROLBAR:ConstructAmericaVehicleHumvee`, finding the correct text entry, and placing an ampersand in exactly the right location.
 
-## Requirements
+Zero Hour Visual Hotkey Editor turns that process into something familiar:
 
-- Windows 10/11
-- Python 3.12 or newer for development
+> **Choose a faction → choose a general → open a building → click the real unit icon → press a key.**
+
+The editor reads the installed game, recreates its command-bar structure, extracts the required cameos locally, detects meaningful conflicts, and safely applies the result with an automatic backup.
+
+## Highlights
+
+### A visual command bar
+
+- Browse commands using the game's real locally extracted unit, building, upgrade, and ability icons.
+- Navigate by faction, general, and producer instead of internal INI or CSF identifiers.
+- Keep command buttons in their in-game command-bar positions.
+- Search for commands such as Humvee, Raptor, Overlord, Tunnel Network, and more.
+- See producer icons, faction emblems, general portraits, and dedicated General Powers categories.
+
+### Complete faction coverage
+
+| Faction | Available armies |
+| --- | --- |
+| USA | Vanilla, Air Force, Laser, Superweapon |
+| China | Vanilla, Tank, Infantry, Nuclear |
+| GLA | Vanilla, Toxin, Stealth, Demolition |
+
+Unused and debug factions are hidden from the normal interface.
+
+### Fast hotkey editing
+
+- Click a command card and press **A–Z** or **0–9** on the physical keyboard.
+- Assign keys using the interactive on-screen keyboard.
+- See which keys are unused, assigned, reserved, or conflicting.
+- Right-click a virtual key to remove one specific binding or every binding assigned to it.
+- Clear all faction command-bar bindings in one action.
+- Use **Ctrl+Z** and **Ctrl+Y** before applying changes.
+
+### Context-aware conflict detection
+
+The editor understands that the same key can be valid in different command sets. A key used by the USA Dozer does not automatically conflict with the same key in the USA Barracks.
+
+When two commands really can appear together, the editor shows where the key is already used and lets you replace the old assignment or choose another key. It also detects shared CSF labels, where changing one shortcut necessarily affects several commands.
+
+### Global game controls
+
+Command-bar hotkeys and global controls are both supported. The Global Hotkeys window reads `CommandMap.ini` and exposes actions such as attack, guard, selecting unit types, camera controls, and other game-wide shortcuts. Global changes have their own validation and backups.
+
+### Safe by design
+
+- Changes remain in memory until **Apply** is pressed.
+- A timestamped backup is created before writing.
+- New CSF and CommandMap files are validated before replacing an existing override.
+- Writes use temporary files and atomic replacement.
+- Restore the latest backup or return to the archive-provided original.
+- The original BIG archives are never modified or repacked.
+
+### Profiles, languages, and themes
+
+- Save logical hotkey layouts as lightweight JSON profiles.
+- Duplicate, rename, import, export, delete, and apply profiles.
+- Preserve the detected original layout as a read-only **Game Default** profile.
+- Switch the application between **English**, **Ukrainian**, and **Russian**.
+- Choose **Modern Dark**, **Light**, or the faction-reactive **Zero Hour** theme.
+- Enable Developer Mode when technical IDs and asset sources are needed.
+
+## Screenshots
+
+The application deliberately does not ship with screenshots containing copyrighted game cameos. Screenshots can be captured after indexing a legally installed local copy of Zero Hour and added under `docs/screenshots/` by project maintainers.
+
+## Installation
+
+### Download a Windows release
+
+1. Open the [Releases page](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/releases).
+2. Download the latest Windows ZIP archive.
+3. Extract the **entire** archive to a normal folder.
+4. Run `ZeroHourHotkeyEditor.exe` from the extracted folder.
+
+The release uses reliable one-folder packaging. Keep the executable and its accompanying DLLs and folders together. Do not run the executable directly from inside the ZIP archive.
+
+### First launch
+
+The editor attempts to detect Steam and EA installations automatically. If detection fails, select the folder containing the Zero Hour installation manually.
+
+During the first launch it will:
+
+1. index relevant BIG archives;
+2. parse game INI definitions;
+3. build the faction and command database;
+4. extract only the icon atlases referenced by visible commands;
+5. crop and cache the required icons;
+6. read current command-bar and global hotkeys.
+
+Indexing runs in the background, so the interface remains responsive. Cached icons are reused on later launches.
+
+## Using the editor
+
+1. Select **USA**, **China**, or **GLA**.
+2. Select the vanilla faction or one of its three generals.
+3. Choose a producer, building, or **General Powers**.
+4. Click the command you want to edit.
+5. Press a key on the physical or virtual keyboard.
+6. Resolve a conflict if the selected key is already used in the same context.
+7. Review the unsaved-change counter and press **Apply**.
+
+Restart Zero Hour after applying changes so the game reloads its localized command data.
+
+## No Electronic Arts assets are distributed
+
+This repository and its Windows builds do **not** include original Zero Hour images, audio, string tables, or other copyrighted game resources.
+
+Icons and faction artwork are obtained only from the user's legally installed copy of the game and cached locally. Deleting the icon cache is safe: the editor can rebuild it from the installed game files.
+
+Relevant resources commonly include:
+
+- `INIZH.big` and patch INI archives;
+- `EnglishZH.big` or the selected language archive;
+- `TexturesZH.big` and relevant UI texture archives;
+- `CommandButton.ini`, `CommandSet.ini`, Object INIs, and MappedImage definitions;
+- `generals.csf` and `CommandMap.ini`.
+
+## How it works
+
+```text
+Faction / General
+        ↓
+Producer Object → CommandSet → CommandButton
+        ↓                            ↓
+in-game slot                   ButtonImage + TextLabel
+                                     ↓          ↓
+                              MappedImage     generals.csf
+                                     ↓          ↓
+                               cropped icon   current hotkey
+```
+
+### BIG archives
+
+`core.big_reader.BigArchive` provides read-only support for the BIGF and BIG4 formats used by SAGE games. It validates archive boundaries and exposes enumeration, case-insensitive lookup, search, and extraction of individual files to memory. FinalBIG is not required.
+
+### Automatic icon extraction
+
+MappedImage definitions identify an atlas texture and a `Left/Top/Right/Bottom` rectangle. Pillow decodes the referenced TGA, handles image orientation, crops the requested region, converts it to PNG, and stores it in the local cache. Only images referenced by visible commands are requested.
+
+If a mapping or texture cannot be found, the application displays a readable placeholder and records a diagnostic warning instead of crashing.
+
+### CSF hotkeys
+
+Zero Hour treats the character following `&` in a localized CSF string as its command-bar mnemonic. The editor reads and writes the game's CSF format, preserves unrelated labels and metadata, and inserts a conventional suffix such as `(&F)` when the chosen character is not present in the visible command name.
+
+Apply creates a loose override under the selected game's language data directory. The shipped archive remains untouched.
+
+## Customizing faction layouts
+
+The stock command database is discovered from the game automatically. Two small override files keep the visible presentation accurate when the original data is ambiguous:
+
+- `data/overrides/producers.json` controls which producer CommandSets are shown for each faction and general, as well as their order.
+- `data/overrides/layouts.json` controls visible commands and their `[row, column]` positions inside a CommandSet.
+
+These files contain technical identifiers only; they do not contain copyrighted textures or localized game text. They can be edited to correct a position, hide a command unavailable to a particular general, or add a valid command discovered in the installed game data.
+
+## User data and backups
+
+Packaged releases store generated data under:
+
+```text
+%LOCALAPPDATA%\ZeroHourHotkeyEditor\
+├── backups\
+├── backups-command-map\
+├── cache\icons\
+├── data\profiles\
+└── logs\app.log
+```
+
+Development runs use equivalent folders beside the repository. Profiles contain logical `TextLabel → key` mappings rather than copies of `generals.csf`.
+
+## Building from source
+
+### Requirements
+
+- Windows 10 or Windows 11
+- Python 3.12 or newer
 - A legal local installation of Command & Conquer: Generals — Zero Hour
 
-Runtime packages are listed in `requirements.txt`: PySide6, Pillow, pytest and PyInstaller.
-
-## Development setup
+### Development setup
 
 ```powershell
+git clone https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor.git
+cd Zero-Hour-Visual-Hotkey-Editor
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
@@ -52,9 +213,9 @@ python -m pytest -q
 python main.py
 ```
 
-The detector checks registry entries, common EA/Steam folders, all Windows drive letters, and `ZERO_HOUR_PATH`. The selected path is remembered by Qt settings.
+The detector checks known registry entries, common EA and Steam locations, Windows drive letters, and the optional `ZERO_HOUR_PATH` environment variable. A manually selected path is remembered for later launches.
 
-## Build the EXE
+### Build the Windows application
 
 Run:
 
@@ -62,108 +223,59 @@ Run:
 build.bat
 ```
 
-The script installs dependencies into `.venv`, runs all tests, and creates:
+The build script installs dependencies into `.venv`, runs the test suite, and produces:
 
 ```text
 dist\ZeroHourHotkeyEditor\ZeroHourHotkeyEditor.exe
 ```
 
-One-folder packaging is intentional: Qt plugins and Pillow image codecs are more reliable and easier to diagnose this way than in a single self-extracting executable.
+To distribute the application, ZIP the complete `dist\ZeroHourHotkeyEditor` directory. The game itself and its assets are never included in this output.
 
-## Architecture
-
-The UI contains no binary/INI parsing logic:
+## Project structure
 
 ```text
-app/       application startup, paths, theme, main window and background indexing
-ui/        command cards/grid, virtual keyboard, settings/conflict/profile dialogs
-core/      detection, BIG/INI/CSF parsers, indexing, assets, hotkeys, profiles, backups
-models/    parser-independent dataclasses
-tests/     small synthetic fixtures only
-data/      user-created logical profiles
-cache/     regenerated local icon cache (gitignored)
-logs/      diagnostic logs (gitignored)
-backups/   timestamped validated CSF backups (gitignored)
+app/       startup, paths, translations, themes, main window, background indexing
+ui/        command cards, command grid, keyboard, settings, conflict and profile dialogs
+core/      game detection, BIG/INI/CSF parsing, assets, hotkeys, profiles and backups
+models/    parser-independent application data models
+data/      presentation overrides and user-created logical profiles
+assets/    original application branding only; no game assets
+tests/     synthetic fixtures and automated tests
 ```
 
-This differs slightly from the initial suggested tree by grouping small related models in `models/entities.py` and keeping orchestration in `core/indexer.py`. It avoids one-class files while preserving strict separation between GUI and game-data logic.
+The GUI does not contain game-file parsing logic. Binary formats, logical hotkey operations, backups, and profiles remain separated from Qt widgets so they can be tested independently.
 
-## BIG indexing
+## Testing
 
-`core.big_reader.BigArchive` supports BIGF and BIG4 read-only archives. It validates the signature, table boundary, filename termination, count, offsets and payload sizes. It provides enumeration, case-insensitive lookup, substring search and extraction of one member to memory.
+Run the complete test suite with:
 
-Overlay priority is currently `PatchINI.big`, `PatchZH.big`, `INIZH.big`, `EnglishZH.big`, `TexturesZH.big`, then `WindowZH.big`. Loose files win when directly requested. Repacking is deliberately unsupported and unnecessary for this editor.
-
-## Icon extraction and MappedImage cropping
-
-MappedImage INIs under `Data\INI\MappedImages` provide an ID, atlas filename, atlas dimensions and a `Left/Top/Right/Bottom` rectangle. The Asset Manager finds the referenced atlas by basename across indexed archives, decodes its TGA orientation through Pillow, crops with the top-left coordinate box, converts to RGBA PNG, and atomically places it in `cache/icons`.
-
-Only `ButtonImage` IDs used by indexed command contexts are requested. Missing mappings, textures or invalid images become placeholders and warnings instead of crashes. In the tested English Steam installation, UI atlases such as `SAUserInterface512_005.tga` are inside `EnglishZH.big`.
-
-The header faction emblems use the stock MappedImages `SAFactionLogo144_US`, `SNFactionLogo144_China` and `SUFactionLogo144_GLA`. They are cropped at runtime from `SCLogosUserInterface512_001.tga` and cached like command cameos; no EA logo is packaged with the editor.
-
-## Interface language and themes
-
-Settings can switch the interface immediately between English, Ukrainian and Russian. The selected language and theme are stored in Qt settings and restored on the next launch. Localized game command names still come from the selected game's `generals.csf`; the application translation never modifies that file.
-
-Three themes are included: Modern Dark, a muted olive-and-gold Zero Hour style, and Light. Themes affect only the editor UI and do not modify the game.
-
-## Building the logical command database
-
-1. `CommandButton.ini` supplies command behavior, object/upgrade/special power, `ButtonImage`, `TextLabel`, and description label.
-2. `CommandSet.ini` supplies command-bar slot → CommandButton.
-3. Object INIs supply producer Object → CommandSet, side and localized producer label.
-4. Known stock prefixes (`AirF_`, `Lazr_`, `SupW_`, `Tank_`, `Infa_`, `Nuke_`, `Chem_`, `Slth_`, `Demo_`) classify the twelve user-facing faction/general variants.
-5. `generals.csf` resolves user-facing names and current mnemonic keys.
-
-Unused/debug sides are excluded because only the three stock factions and the explicit general-prefix map are accepted.
-
-## CSF editing
-
-`core.csf_parser` is a clean-room implementation based on published format documentation and validation against the user's real file. It supports labels with zero or multiple values, plain ` RTS` and extended `WRTS` records, inverted UTF-16LE text, extra metadata, and exact serialization. The real 928,775-byte English CSF currently round-trips byte-for-byte when unmodified.
-
-Zero Hour treats the character after `&` as the mnemonic. The editor removes the old marker and inserts it before the chosen character. If the character is absent (for example assigning **F** to **Humvee**), it appends the conventional localized suffix `(&F)`, which gives SAGE a valid mnemonic while keeping the visual editor label clean.
-
-The shipped language archive is never repacked. Apply writes a loose override to:
-
-```text
-<Zero Hour>\Data\English\generals.csf
+```powershell
+python -m pytest -q
 ```
 
-Before writing, the current loose file—or the untouched CSF extracted from `EnglishZH.big` on first Apply—is copied to a timestamped backup. The new file is serialized to a sibling temporary file, parsed again, flushed to disk, then atomically replaced. Restore Original removes only this generated loose override after backing it up; the game then falls back to its original archive.
+Tests use small synthetic fixtures and cover BIG archive validation, INI blocks, MappedImages, CommandButtons and CommandSets, CSF serialization, mnemonic manipulation, context-aware conflicts, shared labels, undo/redo, grid layouts, profiles, and atomic backup/restore. No test fixture is copied from Zero Hour.
 
-## User data
+## Current scope
 
-Development mode stores data beside the repository:
+- English Zero Hour game resources are the most thoroughly tested. The application interface itself supports English, Ukrainian, and Russian.
+- Command-bar mnemonics support single **A–Z** and **0–9** characters. Function-key mnemonics are not written without a verified game representation.
+- The built-in army list targets the twelve official Zero Hour factions and generals. Total-conversion mods may require additional classification overrides.
+- An automatic configurable grid-preset designer is planned; profiles already provide the storage model needed for it.
 
-- `backups/YYYY-MM-DD_HHMMSS_microseconds/generals.csf`
-- `data/profiles/*.json`
-- `cache/icons/*.png`
-- `logs/app.log`
+## Contributing
 
-The packaged app uses `%LOCALAPPDATA%\ZeroHourHotkeyEditor` for the same folders, while the applied CSF override stays in the selected game directory.
+Bug reports and verified layout corrections are welcome. When reporting incorrect faction content, include the faction, general, producer, CommandSet ID, expected slot, and—when possible—a screenshot from the game.
 
-`Game Default` is created on first successful index and is read-only. Profiles contain only `TextLabel → key`, never a copyrighted CSF copy.
+Please do not submit extracted EA textures, CSF files, audio, or other copyrighted game resources. Contributions should contain code, synthetic test data, and technical mappings only.
 
-## Tests and real-install verification
+## License
 
-Synthetic tests cover BIG boundaries/extraction, generic INI blocks, MappedImages, CommandButtons/Sets, CSF read/write, mnemonic manipulation, context-aware conflicts, shared labels, undo/redo, profiles and atomic backup/restore. No fixture comes from the game.
+The application source code is available under the [MIT License](LICENSE).
 
-The implementation was also read-only tested against a real Steam installation at `E:\SteamLibrary\steamapps\common\Command & Conquer Generals - Zero Hour`: all stock faction/general variants indexed, the real CSF parsed, and the Humvee cameo was cropped successfully. Integration checks never write the installed game's CSF.
+Command & Conquer, Generals, Zero Hour, and related names and artwork are trademarks or copyrighted materials of Electronic Arts Inc. This is an independent fan-made utility and is not affiliated with, endorsed by, or sponsored by Electronic Arts.
 
-## Known limitations / post-MVP work
-
-- English (`EnglishZH.big` and `Data\English`) is the fully tested language. Automatic selection among every localized language archive is next.
-- A configurable automatic Grid Layout preset is architecturally possible through profiles but does not yet have a scheme editor.
-- F1–F12 are intentionally not offered: CSF mnemonics are character-based, and no safe stock Zero Hour representation was verified.
-- Global command-map shortcuts are displayed only when they are normal CommandButtons; editing engine-level `CommandMap.ini` bindings is not included.
-- Mod-specific faction classification may require a small override JSON in a future version.
-- The full parsed database is rebuilt at startup; expensive PNG crops are hash-keyed and reused. A serialized metadata index can further shorten startup for very large mods.
-
-## Format references
+## Technical references
 
 - [OpenSAGE BIG format documentation](https://github.com/OpenSAGE/Docs/blob/master/file-formats/big/index.rst)
 - [TheAssemblyArmada/Thyme CSF format documentation](https://github.com/TheAssemblyArmada/Thyme/wiki/Compiled-String-File-Format)
-- [GenHotkeys reference project](https://github.com/MahBoiDeveloper/GenHotkeys) — consulted for behavior only; no GPL source was copied.
-
-Electronic Arts does not endorse this project. Command & Conquer and Zero Hour are trademarks of Electronic Arts Inc.
+- [GenHotkeys](https://github.com/MahBoiDeveloper/GenHotkeys) — consulted for behavior and format research; no GPL source code was copied.
