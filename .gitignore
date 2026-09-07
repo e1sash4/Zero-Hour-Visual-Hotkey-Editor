@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.build-temp/
+.venv/
+build/
+dist/
+*.spec
+cache/
+logs/
+backups/
+backups-command-map/
+data/profiles/*.json
+!data/profiles/.gitkeep

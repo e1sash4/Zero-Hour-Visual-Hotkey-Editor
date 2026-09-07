@@ -1,0 +1,1068 @@
+{
+    "AmericaDozerCommandSet": {
+        "Command_ConstructAmericaPowerPlant":            [0, 0],
+        "Command_ConstructAmericaBarracks":              [0, 1],
+        "Command_ConstructAmericaSupplyCenter":          [0, 2],
+        "Command_ConstructAmericaPatriotBattery":        [0, 3],
+        "Command_ConstructAmericaFireBase":              [0, 4],
+        "Command_ConstructAmericaWarFactory":            [0, 5],
+        "Command_ConstructAmericaAirfield":              [0, 6],
+        "Command_ConstructAmericaStrategyCenter":        [1, 0],
+        "Command_ConstructAmericaSupplyDropZone":        [1, 1],
+        "Command_ConstructAmericaParticleCannonUplink":  [1, 2],
+        "Command_ConstructAmericaCommandCenter":         [1, 3],
+        "Command_DisarmMinesAtPosition":                 [1, 6]
+    },
+    "AmericaCommandCenterCommandSet": {
+        "Command_ConstructAmericaDozer":  [0, 0],
+        "Command_SetRallyPoint":          [0, 6],
+        "Command_Sell":                   [1, 6]
+    },
+    "AmericaBarracksCommandSet": {
+        "Command_ConstructAmericaInfantryRanger":           [0, 0],
+        "Command_ConstructAmericaInfantryColonelBurton":    [0, 1],
+        "Command_UpgradeAmericaRangerFlashBangGrenade":     [0, 3],
+        "Command_SetRallyPoint":                            [0, 6],
+        "Command_ConstructAmericaInfantryMissileDefender":  [1, 0],
+        "Command_ConstructAmericaInfantryPathfinder":       [1, 1],
+        "Command_UpgradeAmericaRangerCaptureBuilding":      [1, 3],
+        "Command_Sell":                                     [1, 6]
+    },
+    "AmericaWarFactoryCommandSet": {
+        "Command_ConstructAmericaTankCrusader":        [0, 0],
+        "Command_ConstructAmericaVehicleHumvee":       [0, 1],
+        "Command_ConstructAmericaVehiclePaladin":      [0, 2],
+        "Command_ConstructAmericaVehicleAvenger":      [0, 3],
+        "Command_UpgradeAmericaSentryDroneGun":        [0, 4],
+        "Command_UpgradeAmericaTOWMissile":            [0, 5],
+        "Command_SetRallyPoint":                       [0, 6],
+        "Command_ConstructAmericaVehicleTomahawk":     [1, 0],
+        "Command_ConstructAmericaVehicleMedic":        [1, 1],
+        "Command_ConstructAmericaVehicleSentryDrone":  [1, 2],
+        "Command_ConstructAmericaVehicleMicrowave":    [1, 3],
+        "Command_Sell":                                [1, 6]
+    },
+    "AmericaAirfieldCommandSet": {
+        "Command_ConstructAmericaJetRaptor":          [0, 0],
+        "Command_ConstructAmericaJetAurora":          [0, 1],
+        "Command_UpgradeComancheRocketPods":          [0, 3],
+        "Command_UpgradeAmericaCountermeasures":      [0, 4],
+        "Command_SetRallyPoint":                      [0, 6],
+        "Command_ConstructAmericaVehicleComanche":    [1, 0],
+        "Command_ConstructAmericaJetStealthFighter":  [1, 1],
+        "Command_UpgradeAmericaLaserMissiles":        [1, 3],
+        "Command_UpgradeAmericaBunkerBusters":        [1, 4],
+        "Command_Sell":                               [1, 6]
+    },
+    "AmericaStrategyCenterCommandSet": {
+        "Command_UpgradeAmericaAdvancedTraining":  [0, 4],
+        "Command_StrategyCenter_Stop":             [0, 5],
+        "Command_UpgradeAmericaSupplyLines":       [0, 6],
+        "Command_UpgradeAmericaChemicalSuits":     [1, 2],
+        "Command_UpgradeAmericaCompositeArmor":    [1, 3],
+        "Command_UpgradeAmericaDroneArmor":        [1, 4],
+        "Command_Sell":                            [1, 6]
+    },
+    "AmericaSupplyCenterCommandSet": {
+        "Command_ConstructAmericaVehicleChinook":  [0, 0],
+        "Command_SetRallyPoint":                   [0, 6],
+        "Command_Sell":                            [1, 6]
+    },
+    "AmericaPowerPlantCommandSet": {
+        "Command_UpgradeAmericaAdvancedControlRods":  [0, 0],
+        "Command_Sell":                               [1, 6]
+    },
+    "AmericaFireBaseCommandSet": {
+        "Command_Evacuate":  [1, 2],
+        "Command_Sell":      [1, 5],
+        "Command_Stop":      [1, 6]
+    },
+    "AmericaParticleUplinkCannonCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "AirF_AmericaDozerCommandSet": {
+        "AirF_Command_ConstructAmericaPowerPlant":            [0, 0],
+        "AirF_Command_ConstructAmericaBarracks":              [0, 1],
+        "AirF_Command_ConstructAmericaSupplyCenter":          [0, 2],
+        "AirF_Command_ConstructAmericaPatriotBattery":        [0, 3],
+        "AirF_Command_ConstructAmericaFireBase":              [0, 4],
+        "AirF_Command_ConstructAmericaWarFactory":            [0, 5],
+        "AirF_Command_ConstructAmericaAirfield":              [0, 6],
+        "AirF_Command_ConstructAmericaStrategyCenter":        [1, 0],
+        "AirF_Command_ConstructAmericaSupplyDropZone":        [1, 1],
+        "AirF_Command_ConstructAmericaParticleCannonUplink":  [1, 2],
+        "AirF_Command_ConstructAmericaCommandCenter":         [1, 3],
+        "Command_DisarmMinesAtPosition":                      [1, 6]
+    },
+    "AirF_AmericaCommandCenterCommandSet": {
+        "AirF_Command_ConstructAmericaDozer":  [0, 0],
+        "Command_SetRallyPoint":               [0, 6],
+        "Command_Sell":                        [1, 6]
+    },
+    "AirF_AmericaBarracksCommandSet": {
+        "AirF_Command_ConstructAmericaInfantryRanger":           [0, 0],
+        "AirF_Command_ConstructAmericaInfantryColonelBurton":    [0, 1],
+        "Command_UpgradeAmericaRangerFlashBangGrenade":          [0, 3],
+        "Command_SetRallyPoint":                                 [0, 6],
+        "AirF_Command_ConstructAmericaInfantryMissileDefender":  [1, 0],
+        "AirF_Command_ConstructAmericaInfantryPathfinder":       [1, 1],
+        "Command_UpgradeAmericaRangerCaptureBuilding":           [1, 3],
+        "Command_Sell":                                          [1, 6]
+    },
+    "AirF_AmericaWarFactoryCommandSet": {
+        "AirF_Command_ConstructAmericaVehicleHumvee":       [0, 1],
+        "AirF_Command_ConstructAmericaVehicleAvenger":      [0, 3],
+        "Command_UpgradeAmericaSentryDroneGun":             [0, 4],
+        "Command_UpgradeAmericaTOWMissile":                 [0, 5],
+        "Command_SetRallyPoint":                            [0, 6],
+        "AirF_Command_ConstructAmericaVehicleTomahawk":     [1, 0],
+        "AirF_Command_ConstructAmericaVehicleMedic":        [1, 1],
+        "AirF_Command_ConstructAmericaVehicleSentryDrone":  [1, 2],
+        "AirF_Command_ConstructAmericaVehicleMicrowave":    [1, 3],
+        "Command_Sell":                                     [1, 6]
+    },
+    "AirF_AmericaAirfieldCommandSet": {
+        "AirF_Command_ConstructAmericaJetRaptor":          [0, 0],
+        "AirF_Command_ConstructAmericaJetAurora":          [0, 1],
+        "Command_UpgradeComancheRocketPods":               [0, 3],
+        "Command_UpgradeAmericaCountermeasures":           [0, 4],
+        "AirF_Command_UpgradeStealthComanche":             [0, 5],
+        "Command_SetRallyPoint":                           [0, 6],
+        "AirF_Command_ConstructAmericaVehicleComanche":    [1, 0],
+        "AirF_Command_ConstructAmericaJetStealthFighter":  [1, 1],
+        "AirF_Command_UpgradeAmericaLaserMissiles":        [1, 3],
+        "Command_UpgradeAmericaBunkerBusters":             [1, 4],
+        "Command_Sell":                                    [1, 6]
+    },
+    "AirF_AmericaStrategyCenterCommandSet": {
+        "Command_UpgradeAmericaAdvancedTraining":  [0, 4],
+        "Command_StrategyCenter_Stop":             [0, 5],
+        "Command_UpgradeAmericaSupplyLines":       [0, 6],
+        "Command_UpgradeAmericaChemicalSuits":     [1, 2],
+        "Command_UpgradeAmericaDroneArmor":        [1, 4],
+        "Command_Sell":                            [1, 6]
+    },
+    "AirF_AmericaSupplyCenterCommandSet": {
+        "AirF_Command_ConstructAmericaVehicleChinook":  [0, 1],
+        "AirF_Command_ConstructAFGChinook":             [0, 0],
+        "Command_SetRallyPoint":                        [0, 6],
+        "Command_Sell":                                 [1, 6]
+    },
+    "AirF_AmericaPowerPlantCommandSet": {
+        "Command_UpgradeAmericaAdvancedControlRods":  [0, 0],
+        "Command_Sell":                               [1, 6]
+    },
+    "AirF_AmericaFireBaseCommandSet": {
+        "Command_Evacuate":  [1, 2],
+        "Command_Sell":      [1, 5],
+        "Command_Stop":      [1, 6]
+    },
+    "AirF_AmericaParticleUplinkCannonCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "AmericaPatriotBatteryCommandSet": {
+        "Command_Stop":  [0, 6],
+        "Command_Sell":  [1, 6]
+    },
+    "Lazr_AmericaDozerCommandSet": {
+        "Lazr_Command_ConstructAmericaPowerPlant":            [0, 0],
+        "Lazr_Command_ConstructAmericaBarracks":              [0, 1],
+        "Lazr_Command_ConstructAmericaSupplyCenter":          [0, 2],
+        "Lazr_Command_ConstructAmericaPatriotBattery":        [0, 3],
+        "Lazr_Command_ConstructAmericaFireBase":              [0, 4],
+        "Lazr_Command_ConstructAmericaWarFactory":            [0, 5],
+        "Lazr_Command_ConstructAmericaAirfield":              [0, 6],
+        "Lazr_Command_ConstructAmericaStrategyCenter":        [1, 0],
+        "Lazr_Command_ConstructAmericaSupplyDropZone":        [1, 1],
+        "Lazr_Command_ConstructAmericaParticleCannonUplink":  [1, 2],
+        "Lazr_Command_ConstructAmericaCommandCenter":         [1, 3],
+        "Command_DisarmMinesAtPosition":                      [1, 6]
+    },
+    "Lazr_AmericaCommandCenterCommandSet": {
+        "Lazr_Command_ConstructAmericaDozer":  [0, 0],
+        "Command_SetRallyPoint":               [0, 6],
+        "Command_Sell":                        [1, 6]
+    },
+    "Lazr_AmericaBarracksCommandSet": {
+        "Lazr_Command_ConstructAmericaInfantryRanger":           [0, 0],
+        "Lazr_Command_ConstructAmericaInfantryColonelBurton":    [0, 1],
+        "Command_UpgradeAmericaRangerFlashBangGrenade":          [0, 3],
+        "Command_SetRallyPoint":                                 [0, 6],
+        "Lazr_Command_ConstructAmericaInfantryMissileDefender":  [1, 0],
+        "Lazr_Command_ConstructAmericaInfantryPathfinder":       [1, 1],
+        "Command_UpgradeAmericaRangerCaptureBuilding":           [1, 3],
+        "Command_Sell":                                          [1, 6]
+    },
+    "Lazr_AmericaWarFactoryCommandSet": {
+        "Lazr_Command_ConstructAmericaTankCrusader":        [0, 0],
+        "Lazr_Command_ConstructAmericaVehicleHumvee":       [0, 1],
+        "Lazr_Command_ConstructAmericaVehicleAvenger":      [0, 3],
+        "Command_UpgradeAmericaSentryDroneGun":             [0, 4],
+        "Command_UpgradeAmericaTOWMissile":                 [0, 5],
+        "Command_SetRallyPoint":                            [0, 6],
+        "Lazr_Command_ConstructAmericaVehicleMedic":        [1, 1],
+        "Lazr_Command_ConstructAmericaVehicleSentryDrone":  [1, 2],
+        "Lazr_Command_ConstructAmericaVehicleMicrowave":    [1, 3],
+        "Command_Sell":                                     [1, 6]
+    },
+    "Lazr_AmericaAirfieldCommandSet": {
+        "Lazr_Command_ConstructAmericaJetRaptor":          [0, 0],
+        "Lazr_Command_ConstructAmericaJetAurora":          [0, 1],
+        "Command_UpgradeComancheRocketPods":               [0, 3],
+        "Command_UpgradeAmericaCountermeasures":           [0, 4],
+        "Command_SetRallyPoint":                           [0, 6],
+        "Lazr_Command_ConstructAmericaVehicleComanche":    [1, 0],
+        "Lazr_Command_ConstructAmericaJetStealthFighter":  [1, 1],
+        "Command_UpgradeAmericaLaserMissiles":             [1, 3],
+        "Command_UpgradeAmericaBunkerBusters":             [1, 4],
+        "Command_Sell":                                    [1, 6]
+    },
+    "Lazr_AmericaStrategyCenterCommandSet": {
+        "Command_UpgradeAmericaAdvancedTraining":  [0, 4],
+        "Command_StrategyCenter_Stop":             [0, 5],
+        "Command_UpgradeAmericaSupplyLines":       [0, 6],
+        "Command_UpgradeAmericaChemicalSuits":     [1, 2],
+        "Command_UpgradeAmericaCompositeArmor":    [1, 3],
+        "Command_UpgradeAmericaDroneArmor":        [1, 4],
+        "Command_Sell":                            [1, 6]
+    },
+    "Lazr_AmericaSupplyCenterCommandSet": {
+        "Lazr_Command_ConstructAmericaVehicleChinook":  [0, 0],
+        "Command_SetRallyPoint":                        [0, 6],
+        "Command_Sell":                                 [1, 6]
+    },
+    "Lazr_AmericaPowerPlantCommandSet": {
+        "Command_UpgradeAmericaAdvancedControlRods":  [0, 0],
+        "Command_Sell":                               [1, 6]
+    },
+    "Lazr_AmericaFireBaseCommandSet": {
+        "Command_Evacuate":  [1, 2],
+        "Command_Sell":      [1, 5],
+        "Command_Stop":      [1, 6]
+    },
+    "Lazr_AmericaLaserCannonCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "Lazr_AmericaParticleUplinkCannonCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "SupW_AmericaDozerCommandSet": {
+        "SupW_Command_ConstructAmericaPowerPlant":            [0, 0],
+        "SupW_Command_ConstructAmericaBarracks":              [0, 1],
+        "SupW_Command_ConstructAmericaSupplyCenter":          [0, 2],
+        "SupW_Command_ConstructAmericaPatriotBattery":        [0, 3],
+        "SupW_Command_ConstructAmericaFireBase":              [0, 4],
+        "SupW_Command_ConstructAmericaWarFactory":            [0, 5],
+        "SupW_Command_ConstructAmericaAirfield":              [0, 6],
+        "SupW_Command_ConstructAmericaStrategyCenter":        [1, 0],
+        "SupW_Command_ConstructAmericaSupplyDropZone":        [1, 1],
+        "SupW_Command_ConstructAmericaParticleCannonUplink":  [1, 2],
+        "SupW_Command_ConstructAmericaCommandCenter":         [1, 3],
+        "Command_DisarmMinesAtPosition":                      [1, 6]
+    },
+    "SupW_AmericaCommandCenterCommandSet": {
+        "SupW_Command_ConstructAmericaDozer":  [0, 0],
+        "Command_SetRallyPoint":               [0, 6],
+        "Command_Sell":                        [1, 6]
+    },
+    "SupW_AmericaBarracksCommandSet": {
+        "SupW_Command_ConstructAmericaInfantryRanger":           [0, 0],
+        "SupW_Command_ConstructAmericaInfantryColonelBurton":    [0, 1],
+        "Command_UpgradeAmericaRangerFlashBangGrenade":          [0, 3],
+        "Command_SetRallyPoint":                                 [0, 6],
+        "SupW_Command_ConstructAmericaInfantryMissileDefender":  [1, 0],
+        "SupW_Command_ConstructAmericaInfantryPathfinder":       [1, 1],
+        "Command_UpgradeAmericaRangerCaptureBuilding":           [1, 3],
+        "Command_Sell":                                          [1, 6]
+    },
+    "SupW_AmericaWarFactoryCommandSet": {
+        "SupW_Command_ConstructAmericaVehicleHumvee":       [0, 1],
+        "SupW_Command_ConstructAmericaVehicleAvenger":      [0, 3],
+        "Command_UpgradeAmericaSentryDroneGun":             [0, 4],
+        "Command_UpgradeAmericaTOWMissile":                 [0, 5],
+        "Command_SetRallyPoint":                            [0, 6],
+        "SupW_Command_ConstructAmericaVehicleTomahawk":     [1, 0],
+        "SupW_Command_ConstructAmericaVehicleMedic":        [1, 1],
+        "SupW_Command_ConstructAmericaVehicleSentryDrone":  [1, 2],
+        "SupW_Command_ConstructAmericaVehicleMicrowave":    [1, 3],
+        "Command_Sell":                                     [1, 6]
+    },
+    "SupW_AmericaAirfieldCommandSet": {
+        "SupW_Command_ConstructAmericaJetRaptor":          [0, 0],
+        "SupW_Command_ConstructAmericaJetAurora":          [0, 1],
+        "Command_UpgradeComancheRocketPods":               [0, 3],
+        "Command_UpgradeAmericaCountermeasures":           [0, 4],
+        "Command_SetRallyPoint":                           [0, 6],
+        "SupW_Command_ConstructAmericaVehicleComanche":    [1, 0],
+        "SupW_Command_ConstructAmericaJetStealthFighter":  [1, 1],
+        "Command_UpgradeAmericaLaserMissiles":             [1, 3],
+        "Command_UpgradeAmericaBunkerBusters":             [1, 4],
+        "Command_Sell":                                    [1, 6]
+    },
+    "SupW_AmericaStrategyCenterCommandSet": {
+        "Command_UpgradeAmericaAdvancedTraining":  [0, 4],
+        "Command_StrategyCenter_Stop":             [0, 5],
+        "Command_UpgradeAmericaSupplyLines":       [0, 6],
+        "Command_UpgradeAmericaChemicalSuits":     [1, 2],
+        "Command_UpgradeAmericaDroneArmor":        [1, 4],
+        "Command_Sell":                            [1, 6]
+    },
+    "SupW_AmericaSupplyCenterCommandSet": {
+        "SupW_Command_ConstructAmericaVehicleChinook":  [0, 0],
+        "Command_SetRallyPoint":                        [0, 6],
+        "Command_Sell":                                 [1, 6]
+    },
+    "SupW_AmericaPowerPlantCommandSet": {
+        "SupW_Command_UpgradeAmericaAdvancedControlRods":  [0, 0],
+        "Command_Sell":                                    [1, 6]
+    },
+    "SupW_AmericaPatriotBatteryCommandSet": {
+        "Command_Stop":  [0, 6],
+        "Command_Sell":  [1, 6]
+    },
+    "SupW_AmericaFireBaseCommandSet": {
+        "Command_Evacuate":  [1, 2],
+        "Command_Sell":      [1, 5],
+        "Command_Stop":      [1, 6]
+    },
+    "SupW_AmericaParticleUplinkCannonCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "SupW_AmericaCruiseMissileCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "SupW_AmericaNuclearMissileCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "ChinaDozerCommandSet": {
+        "Command_ConstructChinaPowerPlant":              [0, 0],
+        "Command_ConstructChinaBarracks":                [0, 1],
+        "Command_ConstructChinaSupplyCenter":            [0, 2],
+        "Command_ConstructChinaBunker":                  [0, 3],
+        "Command_ConstructChinaGattlingCannon":          [0, 4],
+        "Command_ConstructChinaWarFactory":              [0, 5],
+        "Command_ConstructChinaInternetCenter":          [1, 0],
+        "Command_ConstructChinaAirfield":                [1, 1],
+        "Command_ConstructChinaPropagandaCenter":        [1, 2],
+        "Command_ConstructChinaSpeakerTower":            [1, 3],
+        "Command_ConstructChinaNuclearMissileLauncher":  [1, 4],
+        "Command_ConstructChinaCommandCenter":           [1, 5],
+        "Command_DisarmMinesAtPosition":                 [1, 6]
+    },
+    "ChinaCommandCenterCommandSet": {
+        "Command_ConstructChinaDozer":  [0, 0],
+        "Command_UpgradeChinaRadar":    [0, 4],
+        "Command_SetRallyPoint":        [0, 6],
+        "Command_UpgradeChinaMines":    [1, 5],
+        "Command_Sell":                 [1, 6]
+    },
+    "ChinaBarracksCommandSet": {
+        "Command_ConstructChinaInfantryRedguard":       [0, 0],
+        "Command_ConstructChinaInfantryHacker":         [0, 1],
+        "Command_UpgradeChinaRedguardCaptureBuilding":  [0, 3],
+        "Command_SetRallyPoint":                        [0, 6],
+        "Command_ConstructChinaInfantryTankHunter":     [1, 0],
+        "Command_ConstructChinaInfantryBlackLotus":     [1, 1],
+        "Command_UpgradeChinaMines":                    [1, 5],
+        "Command_Sell":                                 [1, 6]
+    },
+    "ChinaWarFactoryCommandSet": {
+        "Command_ConstructChinaTankBattleMaster":         [0, 0],
+        "Command_ConstructChinaVehicleTroopCrawler":      [0, 1],
+        "Command_ConstructChinaTankGattling":             [0, 2],
+        "Command_ConstructChinaTankDragon":               [0, 3],
+        "Command_ConstructChinaVehicleInfernoCannon":     [0, 4],
+        "Command_ConstructChinaTankECM":                  [0, 5],
+        "Command_SetRallyPoint":                          [0, 6],
+        "Command_ConstructChinaTankOverlord":             [1, 0],
+        "Command_ConstructChinaVehicleListeningOutpost":  [1, 1],
+        "Command_UpgradeChinaChainGuns":                  [1, 2],
+        "Command_UpgradeChinaBlackNapalm":                [1, 3],
+        "Command_ConstructChinaVehicleNukeLauncher":      [1, 4],
+        "Command_UpgradeChinaMines":                      [1, 5],
+        "Command_Sell":                                   [1, 6]
+    },
+    "ChinaAirfieldCommandSet": {
+        "Command_ConstructChinaJetMIG":        [0, 0],
+        "Command_ConstructChinaVehicleHelix":  [0, 1],
+        "Command_SetRallyPoint":               [0, 6],
+        "Command_UpgradeChinaAircraftArmor":   [1, 0],
+        "Command_UpgradeChinaMines":           [1, 5],
+        "Command_Sell":                        [1, 6]
+    },
+    "ChinaPropagandaCenterCommandSet": {
+        "Command_UpgradeChinaNationalism":          [0, 0],
+        "Command_UpgradeChinaSubliminalMessaging":  [0, 1],
+        "Command_UpgradeChinaMines":                [1, 5],
+        "Command_Sell":                             [1, 6]
+    },
+    "ChinaSupplyCenterCommandSet": {
+        "Command_ConstructChinaVehicleSupplyTruck":  [0, 0],
+        "Command_SetRallyPoint":                     [0, 6],
+        "Command_UpgradeChinaMines":                 [1, 5],
+        "Command_Sell":                              [1, 6]
+    },
+    "ChinaPowerPlantCommandSet": {
+        "Command_Overcharge":         [0, 0],
+        "Command_UpgradeChinaMines":  [1, 5],
+        "Command_Sell":               [1, 6]
+    },
+    "ChinaInternetCenterCommandSetOne": {
+        "Command_Evacuate":                      [0, 4],
+        "Command_UpgradeChinaSatelliteHackOne":  [1, 4],
+        "Command_UpgradeChinaMines":             [1, 5],
+        "Command_Sell":                          [1, 6]
+    },
+    "ChinaBunkerCommandSet": {
+        "Command_Stop":               [0, 6],
+        "Command_Evacuate":           [1, 2],
+        "Command_UpgradeChinaMines":  [1, 5],
+        "Command_Sell":               [1, 6]
+    },
+    "ChinaGattlingCannonCommandSet": {
+        "Command_Stop":               [0, 6],
+        "Command_UpgradeChinaMines":  [1, 5],
+        "Command_Sell":               [1, 6]
+    },
+    "ChinaSpeakerTowerCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "ChinaNuclearMissileCommandSet": {
+        "Command_UpgradeChinaUraniumShells":  [0, 3],
+        "Command_UpgradeChinaNuclearTanks":   [1, 3],
+        "Command_UpgradeChinaNeutronShells":  [1, 4],
+        "Command_UpgradeChinaMines":          [1, 5],
+        "Command_Sell":                       [1, 6]
+    },
+    "Tank_ChinaDozerCommandSet": {
+        "Tank_Command_ConstructChinaPowerPlant":              [0, 0],
+        "Tank_Command_ConstructChinaBarracks":                [0, 1],
+        "Tank_Command_ConstructChinaSupplyCenter":            [0, 2],
+        "Tank_Command_ConstructChinaBunker":                  [0, 3],
+        "Tank_Command_ConstructChinaGattlingCannon":          [0, 4],
+        "Tank_Command_ConstructChinaWarFactory":              [0, 5],
+        "Tank_Command_ConstructChinaInternetCenter":          [1, 0],
+        "Tank_Command_ConstructChinaAirfield":                [1, 1],
+        "Tank_Command_ConstructChinaPropagandaCenter":        [1, 2],
+        "Tank_Command_ConstructChinaSpeakerTower":            [1, 3],
+        "Tank_Command_ConstructChinaNuclearMissileLauncher":  [1, 4],
+        "Tank_Command_ConstructChinaCommandCenter":           [1, 5],
+        "Command_DisarmMinesAtPosition":                      [1, 6]
+    },
+    "Tank_ChinaCommandCenterCommandSet": {
+        "Tank_Command_ConstructChinaDozer":  [0, 0],
+        "Command_UpgradeChinaRadar":         [0, 4],
+        "Command_SetRallyPoint":             [0, 6],
+        "Command_UpgradeChinaMines":         [1, 5],
+        "Command_Sell":                      [1, 6]
+    },
+    "Tank_ChinaBarracksCommandSet": {
+        "Tank_Command_ConstructChinaInfantryRedguard":       [0, 0],
+        "Tank_Command_ConstructChinaInfantryHacker":         [0, 1],
+        "Tank_Command_UpgradeChinaRedguardCaptureBuilding":  [0, 3],
+        "Command_SetRallyPoint":                             [0, 6],
+        "Tank_Command_ConstructChinaInfantryTankHunter":     [1, 0],
+        "Tank_Command_ConstructChinaInfantryBlackLotus":     [1, 1],
+        "Command_UpgradeChinaMines":                         [1, 5],
+        "Command_Sell":                                      [1, 6]
+    },
+    "Tank_ChinaWarFactoryCommandSet": {
+        "Tank_Command_ConstructChinaTankBattleMaster":         [0, 0],
+        "Tank_Command_ConstructChinaVehicleTroopCrawler":      [0, 1],
+        "Tank_Command_ConstructChinaTankGattling":             [0, 2],
+        "Tank_Command_ConstructChinaTankDragon":               [0, 3],
+        "Tank_Command_ConstructChinaTankECM":                  [0, 5],
+        "Command_SetRallyPoint":                               [0, 6],
+        "Tank_Command_ConstructChinaTankEmperor":              [1, 0],
+        "Tank_Command_ConstructChinaVehicleListeningOutpost":  [1, 1],
+        "Command_UpgradeChinaChainGuns":                       [1, 2],
+        "Command_UpgradeChinaBlackNapalm":                     [1, 3],
+        "Command_UpgradeChinaMines":                           [1, 5],
+        "Command_Sell":                                        [1, 6]
+    },
+    "Tank_ChinaAirfieldCommandSet": {
+        "Tank_Command_ConstructChinaJetMIG":        [0, 0],
+        "Tank_Command_ConstructChinaVehicleHelix":  [0, 1],
+        "Command_SetRallyPoint":                    [0, 6],
+        "Command_UpgradeChinaAircraftArmor":        [1, 0],
+        "Command_UpgradeChinaMines":                [1, 5],
+        "Command_Sell":                             [1, 6]
+    },
+    "Tank_ChinaPropagandaCenterCommandSet": {
+        "Command_UpgradeChinaNationalism":          [0, 0],
+        "Command_UpgradeChinaSubliminalMessaging":  [0, 1],
+        "Tank_Command_UpgradeChinaAutoLoader":      [1, 0],
+        "Command_UpgradeChinaMines":                [1, 5],
+        "Command_Sell":                             [1, 6]
+    },
+    "Tank_ChinaSupplyCenterCommandSet": {
+        "Tank_Command_ConstructChinaVehicleSupplyTruck":  [0, 0],
+        "Command_SetRallyPoint":                          [0, 6],
+        "Command_UpgradeChinaMines":                      [1, 5],
+        "Command_Sell":                                   [1, 6]
+    },
+    "Tank_ChinaGattlingCannonCommandSet": {
+        "Command_Stop":               [0, 6],
+        "Command_UpgradeChinaMines":  [1, 5],
+        "Command_Sell":               [1, 6]
+    },
+    "Tank_ChinaNuclearMissileCommandSet": {
+        "Tank_Command_UpgradeChinaUraniumShells":  [0, 3],
+        "Tank_Command_UpgradeChinaNuclearTanks":   [1, 3],
+        "Command_UpgradeChinaMines":               [1, 5],
+        "Command_Sell":                            [1, 6]
+    },
+    "Infa_ChinaDozerCommandSet": {
+        "Infa_Command_ConstructChinaPowerPlant":              [0, 0],
+        "Infa_Command_ConstructChinaBarracks":                [0, 1],
+        "Infa_Command_ConstructChinaSupplyCenter":            [0, 2],
+        "Infa_Command_ConstructChinaBunker":                  [0, 3],
+        "Infa_Command_ConstructChinaGattlingCannon":          [0, 4],
+        "Infa_Command_ConstructChinaWarFactory":              [0, 5],
+        "Infa_Command_ConstructChinaInternetCenter":          [1, 0],
+        "Infa_Command_ConstructChinaAirfield":                [1, 1],
+        "Infa_Command_ConstructChinaPropagandaCenter":        [1, 2],
+        "Infa_Command_ConstructChinaSpeakerTower":            [1, 3],
+        "Infa_Command_ConstructChinaNuclearMissileLauncher":  [1, 4],
+        "Infa_Command_ConstructChinaCommandCenter":           [1, 5],
+        "Command_DisarmMinesAtPosition":                      [1, 6]
+    },
+    "Infa_ChinaCommandCenterCommandSet": {
+        "Infa_Command_ConstructChinaDozer":  [0, 0],
+        "Command_UpgradeChinaRadar":         [0, 4],
+        "Command_SetRallyPoint":             [0, 6],
+        "Command_UpgradeChinaMines":         [1, 5],
+        "Command_Sell":                      [1, 6]
+    },
+    "Infa_ChinaBarracksCommandSet": {
+        "Infa_Command_ConstructChinaInfantryMiniGunner":     [0, 0],
+        "Infa_Command_ConstructChinaInfantryHacker":         [0, 1],
+        "Infa_Command_UpgradeChinaRedguardCaptureBuilding":  [0, 3],
+        "Command_SetRallyPoint":                             [0, 6],
+        "Infa_Command_ConstructChinaInfantryTankHunter":     [1, 0],
+        "Infa_Command_ConstructChinaInfantryBlackLotus":     [1, 1],
+        "Command_UpgradeChinaMines":                         [1, 5],
+        "Command_Sell":                                      [1, 6]
+    },
+    "Infa_ChinaWarFactoryCommandSet": {
+        "Infa_Command_ConstructChinaVehicleTroopCrawler":      [0, 1],
+        "Infa_Command_ConstructChinaTankDragon":               [0, 3],
+        "Infa_Command_ConstructChinaVehicleInfernoCannon":     [0, 4],
+        "Infa_Command_ConstructChinaTankECM":                  [0, 5],
+        "Command_SetRallyPoint":                               [0, 6],
+        "Infa_Command_ConstructChinaVehicleListeningOutpost":  [1, 1],
+        "Command_UpgradeChinaChainGuns":                       [1, 2],
+        "Command_UpgradeChinaBlackNapalm":                     [1, 3],
+        "Infa_Command_ConstructChinaVehicleNukeLauncher":      [1, 4],
+        "Command_UpgradeChinaMines":                           [1, 5],
+        "Command_Sell":                                        [1, 6]
+    },
+    "Infa_ChinaAirfieldCommandSet": {
+        "Infa_Command_ConstructChinaJetMig":        [0, 0],
+        "Infa_Command_ConstructChinaVehicleHelix":  [0, 1],
+        "Command_SetRallyPoint":                    [0, 6],
+        "Infa_Command_UpgradeChinaAircraftArmor":   [1, 0],
+        "Command_UpgradeChinaMines":                [1, 5],
+        "Command_Sell":                             [1, 6]
+    },
+    "Infa_ChinaPropagandaCenterCommandSet": {
+        "Command_UpgradeChinaFanaticism":           [0, 0],
+        "Command_UpgradeChinaSubliminalMessaging":  [0, 1],
+        "Command_UpgradeChinaMines":                [1, 5],
+        "Command_Sell":                             [1, 6]
+    },
+    "Infa_ChinaSupplyCenterCommandSet": {
+        "Infa_Command_ConstructChinaVehicleSupplyTruck":  [0, 0],
+        "Command_SetRallyPoint":                          [0, 6],
+        "Command_UpgradeChinaMines":                      [1, 5],
+        "Command_Sell":                                   [1, 6]
+    },
+    "Infa_ChinaPowerPlantCommandSet": {
+        "Command_Overcharge":         [0, 0],
+        "Command_UpgradeChinaMines":  [1, 5],
+        "Command_Sell":               [1, 6]
+    },
+    "Infa_ChinaInternetCenterCommandSetOne": {
+        "Command_Evacuate":                      [0, 4],
+        "Command_UpgradeChinaSatelliteHackOne":  [1, 4],
+        "Command_UpgradeChinaMines":             [1, 5],
+        "Command_Sell":                          [1, 6]
+    },
+    "Infa_ChinaBunkerCommandSetUpgrade": {
+        "Command_Evacuate":         [0, 5],
+        "Command_Stop":             [0, 6],
+        "Command_UpgradeEMPMines":  [1, 5],
+        "Command_Sell":             [1, 6]
+    },
+    "Infa_ChinaNuclearMissileCommandSet": {
+        "Command_UpgradeChinaNeutronShells":  [1, 4],
+        "Command_UpgradeChinaMines":          [1, 5],
+        "Command_Sell":                       [1, 6]
+    },
+    "Nuke_ChinaDozerCommandSet": {
+        "Nuke_Command_ConstructChinaPowerPlant":              [0, 0],
+        "Nuke_Command_ConstructChinaBarracks":                [0, 1],
+        "Nuke_Command_ConstructChinaSupplyCenter":            [0, 2],
+        "Nuke_Command_ConstructChinaBunker":                  [0, 3],
+        "Nuke_Command_ConstructChinaGattlingCannon":          [0, 4],
+        "Nuke_Command_ConstructChinaWarFactory":              [0, 5],
+        "Nuke_Command_ConstructChinaInternetCenter":          [1, 0],
+        "Nuke_Command_ConstructChinaAirfield":                [1, 1],
+        "Nuke_Command_ConstructChinaPropagandaCenter":        [1, 2],
+        "Nuke_Command_ConstructChinaSpeakerTower":            [1, 3],
+        "Nuke_Command_ConstructChinaNuclearMissileLauncher":  [1, 4],
+        "Nuke_Command_ConstructChinaCommandCenter":           [1, 5],
+        "Command_DisarmMinesAtPosition":                      [1, 6]
+    },
+    "Nuke_ChinaCommandCenterCommandSet": {
+        "Nuke_Command_ConstructChinaDozer":  [0, 0],
+        "Command_UpgradeChinaRadar":         [0, 4],
+        "Command_SetRallyPoint":             [0, 6],
+        "Command_UpgradeChinaMines":         [1, 5],
+        "Command_Sell":                      [1, 6]
+    },
+    "Nuke_ChinaBarracksCommandSet": {
+        "Nuke_Command_ConstructChinaInfantryMiniGunner":     [0, 0],
+        "Nuke_Command_ConstructChinaInfantryHacker":         [0, 1],
+        "Nuke_Command_UpgradeChinaRedguardCaptureBuilding":  [0, 3],
+        "Command_SetRallyPoint":                             [0, 6],
+        "Nuke_Command_ConstructChinaInfantryTankHunter":     [1, 0],
+        "Nuke_Command_ConstructChinaInfantryBlackLotus":     [1, 1],
+        "Command_UpgradeChinaMines":                         [1, 5],
+        "Command_Sell":                                      [1, 6]
+    },
+    "Nuke_ChinaWarFactoryCommandSet": {
+        "Nuke_Command_ConstructChinaTankBattleMaster":         [0, 0],
+        "Nuke_Command_ConstructChinaVehicleTroopCrawler":      [0, 1],
+        "Nuke_Command_ConstructChinaTankGattling":             [0, 2],
+        "Nuke_Command_ConstructChinaTankDragon":               [0, 3],
+        "Nuke_Command_ConstructChinaVehicleInfernoCannon":     [0, 4],
+        "Nuke_Command_ConstructChinaTankECM":                  [0, 5],
+        "Command_SetRallyPoint":                               [0, 6],
+        "Nuke_Command_ConstructChinaTankOverlord":             [1, 0],
+        "Nuke_Command_ConstructChinaVehicleListeningOutpost":  [1, 1],
+        "Command_UpgradeChinaChainGuns":                       [1, 2],
+        "Command_UpgradeChinaBlackNapalm":                     [1, 3],
+        "Nuke_Command_ConstructChinaVehicleNukeLauncher":      [1, 4],
+        "Command_UpgradeChinaMines":                           [1, 5],
+        "Command_Sell":                                        [1, 6]
+    },
+    "Nuke_ChinaAirfieldCommandSet": {
+        "Nuke_Command_ConstructChinaJetMIG":        [0, 0],
+        "Nuke_Command_ConstructChinaVehicleHelix":  [0, 1],
+        "Command_SetRallyPoint":                    [0, 6],
+        "Command_UpgradeChinaAircraftArmor":        [1, 0],
+        "Command_UpgradeChinaMines":                [1, 5],
+        "Command_Sell":                             [1, 6]
+    },
+    "Nuke_ChinaPropagandaCenterCommandSet": {
+        "Command_UpgradeChinaNationalism":            [0, 0],
+        "Command_UpgradeChinaSubliminalMessaging":    [0, 1],
+        "Nuke_Command_UpgradeChinaIsotopeStability":  [1, 0],
+        "Command_UpgradeChinaMines":                  [1, 5],
+        "Command_Sell":                               [1, 6]
+    },
+    "Nuke_ChinaSupplyCenterCommandSet": {
+        "Nuke_Command_ConstructChinaVehicleSupplyTruck":  [0, 0],
+        "Command_SetRallyPoint":                          [0, 6],
+        "Command_UpgradeChinaMines":                      [1, 5],
+        "Command_Sell":                                   [1, 6]
+    },
+    "Nuke_ChinaBunkerCommandSet": {
+        "Command_Evacuate":           [0, 2],
+        "Command_Stop":               [0, 6],
+        "Command_UpgradeChinaMines":  [1, 5],
+        "Command_Sell":               [1, 6]
+    },
+    "Nuke_ChinaNuclearMissileCommandSet": {
+        "Command_UpgradeChinaTacticalNukeMig":  [0, 5],
+        "Command_UpgradeChinaNeutronShells":    [1, 4],
+        "Command_UpgradeChinaMines":            [1, 5],
+        "Command_Sell":                         [1, 6]
+    },
+    "GLAWorkerCommandSet": {
+        "Command_ConstructGLASupplyStash":         [0, 0],
+        "Command_ConstructGLABarracks":            [0, 1],
+        "Command_ConstructGLAStingerSite":         [0, 2],
+        "Command_ConstructGLATunnelNetwork":       [0, 3],
+        "Command_ConstructGLAArmsDealer":          [0, 4],
+        "Command_UpgradeGLAWorkerFakeCommandSet":  [0, 6],
+        "Command_ConstructGLADemoTrap":            [1, 0],
+        "Command_ConstructGLAPalace":              [1, 1],
+        "Command_ConstructGLABlackMarket":         [1, 2],
+        "Command_ConstructGLAScudStorm":           [1, 3],
+        "Command_ConstructGLACommandCenter":       [1, 4],
+        "Command_DisarmMinesAtPosition":           [1, 6]
+    },
+    "GLAWorkerFakeBuildingsCommandSet": {
+        "Command_ConstructFakeGLACommandCenter":       [0, 0],
+        "Command_ConstructFakeGLABarracks":            [0, 1],
+        "Command_ConstructFakeGLASupplyStash":         [0, 2],
+        "Command_ConstructFakeGLAArmsDealer":          [0, 3],
+        "Command_ConstructFakeGLABlackMarket":         [0, 4],
+        "Command_UpgradeGLAWorkerRealCommandSet":      [0, 6]
+    },
+    "GLACommandCenterCommandSet": {
+        "Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":       [0, 6],
+        "Command_Sell":                [1, 6]
+    },
+    "GLABarracksCommandSet": {
+        "Command_ConstructGLAInfantryRebel":               [0, 0],
+        "Command_ConstructGLAInfantryTerrorist":           [0, 1],
+        "Command_ConstructGLAInfantryHijacker":            [0, 2],
+        "Command_ConstructGLAInfantrySaboteur":            [0, 3],
+        "Command_UpgradeGLARebelCaptureBuilding":          [0, 5],
+        "Command_SetRallyPoint":                           [0, 6],
+        "Command_ConstructGLAInfantryRPGTrooper":          [1, 0],
+        "Command_ConstructGLAInfantryAngryMob":            [1, 1],
+        "Command_ConstructGLAInfantryJarmenKell":          [1, 2],
+        "Command_UpgradeGLAInfantryRebelBoobyTrapAttack":  [1, 3],
+        "Command_Sell":                                    [1, 6]
+    },
+    "GLAArmsDealerCommandSet": {
+        "Command_ConstructGLATankScorpion":         [0, 0],
+        "Command_ConstructGLAVehicleRadarVan":      [0, 1],
+        "Command_ConstructGLAVehicleToxinTruck":    [0, 2],
+        "Command_ConstructGLATankMarauder":         [0, 3],
+        "Command_ConstructGLAVehicleScudLauncher":  [0, 4],
+        "Command_ConstructGLAVehicleCombatBike":    [0, 5],
+        "Command_SetRallyPoint":                    [0, 6],
+        "Command_ConstructGLAVehicleTechnical":     [1, 0],
+        "Command_ConstructGLAVehicleQuadCannon":    [1, 1],
+        "Command_ConstructGLAVehicleRocketBuggy":   [1, 2],
+        "Command_ConstructGLAVehicleBombTruck":     [1, 3],
+        "Command_UpgradeGLAScorpionRocket":         [1, 4],
+        "Command_ConstructGLAVehicleBattleBus":     [1, 5],
+        "Command_Sell":                             [1, 6]
+    },
+    "GLAPalaceCommandSet": {
+        "Command_UpgradeGLAFortifiedStructure":  [0, 3],
+        "Command_UpgradeGLACamoNetting":         [0, 4],
+        "Command_UpgradeGLAAnthraxBeta":         [0, 5],
+        "Command_Evacuate":                      [1, 2],
+        "Command_UpgradeGLAArmTheMob":           [1, 3],
+        "Command_UpgradeGLAToxinShells":         [1, 4],
+        "Command_Sell":                          [1, 6]
+    },
+    "GLABlackMarketCommandSet": {
+        "Command_UpgradeGLAAPBullets":     [0, 0],
+        "Command_UpgradeGLAJunkRepair":    [0, 1],
+        "Command_UpgradeGLARadarVanScan":  [0, 2],
+        "Command_UpgradeGLAAPRockets":     [1, 0],
+        "Command_UpgradeGLABuggyAmmo":     [1, 1],
+        "Command_UpgradeGLAWorkerShoes":   [1, 2],
+        "Command_Sell":                    [1, 6]
+    },
+    "GLASupplyStashCommandSet": {
+        "Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":       [0, 6],
+        "Command_Sell":                [1, 6]
+    },
+    "GLATunnelNetworkCommandSet": {
+        "Command_TunnelEvacuate":         [0, 5],
+        "Command_SetRallyPoint":          [0, 6],
+        "Command_UpgradeGLACamoNetting":  [1, 5],
+        "Command_Sell":                   [1, 6]
+    },
+    "GLAStingerSiteCommandSet": {
+        "Command_Stop":                   [0, 6],
+        "Command_UpgradeGLACamoNetting":  [1, 5],
+        "Command_Sell":                   [1, 6]
+    },
+    "GLAScudStormCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "Chem_GLAWorkerCommandSet": {
+        "Chem_Command_ConstructGLASupplyStash":    [0, 0],
+        "Chem_Command_ConstructGLABarracks":       [0, 1],
+        "Chem_Command_ConstructGLAStingerSite":    [0, 2],
+        "Chem_Command_ConstructGLATunnelNetwork":  [0, 3],
+        "Chem_Command_ConstructGLAArmsDealer":     [0, 4],
+        "Command_UpgradeGLAWorkerFakeCommandSet":  [0, 6],
+        "Chem_Command_ConstructGLADemoTrap":       [1, 0],
+        "Chem_Command_ConstructGLAPalace":         [1, 1],
+        "Chem_Command_ConstructGLABlackMarket":    [1, 2],
+        "Chem_Command_ConstructGLAScudStorm":      [1, 3],
+        "Chem_Command_ConstructGLACommandCenter":  [1, 4],
+        "Command_DisarmMinesAtPosition":           [1, 6]
+    },
+    "Chem_GLAWorkerFakeBuildingsCommandSet": {
+        "Chem_Command_ConstructFakeGLACommandCenter":  [0, 0],
+        "Chem_Command_ConstructFakeGLABarracks":       [0, 1],
+        "Chem_Command_ConstructFakeGLASupplyStash":    [0, 2],
+        "Chem_Command_ConstructFakeGLAArmsDealer":     [0, 3],
+        "Chem_Command_ConstructFakeGLABlackMarket":    [0, 4],
+        "Command_UpgradeGLAWorkerRealCommandSet":      [0, 6]
+    },
+    "Chem_GLACommandCenterCommandSet": {
+        "Chem_Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":            [0, 6],
+        "Command_Sell":                     [1, 6]
+    },
+    "Chem_GLABarracksCommandSet": {
+        "Chem_Command_ConstructGLAInfantryRebel":               [0, 0],
+        "Chem_Command_ConstructGLAInfantryTerrorist":           [0, 1],
+        "Command_UpgradeGLARebelCaptureBuilding":               [0, 5],
+        "Command_SetRallyPoint":                                [0, 6],
+        "Chem_Command_ConstructGLAInfantryRPGTrooper":          [1, 0],
+        "Chem_Command_ConstructGLAInfantryAngryMob":            [1, 1],
+        "Chem_Command_ConstructGLAInfantryJarmenKell":          [1, 2],
+        "Chem_Command_UpgradeGLAInfantryRebelBoobyTrapAttack":  [1, 3],
+        "Command_Sell":                                         [1, 6]
+    },
+    "Chem_GLAArmsDealerCommandSet": {
+        "Chem_Command_ConstructGLATankScorpion":         [0, 0],
+        "Chem_Command_ConstructGLAVehicleRadarVan":      [0, 1],
+        "Chem_Command_ConstructGLAVehicleToxinTruck":    [0, 2],
+        "Chem_Command_ConstructGLATankMarauder":         [0, 3],
+        "Chem_Command_ConstructGLAVehicleScudLauncher":  [0, 4],
+        "Chem_Command_ConstructGLAVehicleCombatBike":    [0, 5],
+        "Command_SetRallyPoint":                         [0, 6],
+        "Chem_Command_ConstructGLAVehicleTechnical":     [1, 0],
+        "Chem_Command_ConstructGLAVehicleQuadCannon":    [1, 1],
+        "Chem_Command_ConstructGLAVehicleRocketBuggy":   [1, 2],
+        "Chem_Command_ConstructGLAVehicleBombTruck":     [1, 3],
+        "Command_UpgradeGLAScorpionRocket":              [1, 4],
+        "Chem_Command_ConstructGLAVehicleBattleBus":     [1, 5],
+        "Command_Sell":                                  [1, 6]
+    },
+    "Chem_GLAPalaceCommandSet": {
+        "Command_UpgradeGLAFortifiedStructure":  [0, 3],
+        "Chem_Command_UpgradeGLAAnthraxGamma":   [0, 5],
+        "Command_Evacuate":                      [1, 2],
+        "Command_UpgradeGLAArmTheMob":           [1, 3],
+        "Command_Sell":                          [1, 6]
+    },
+    "Chem_GLABlackMarketCommandSet": {
+        "Chem_Command_UpgradeGLAAPBullets":  [0, 0],
+        "Command_UpgradeGLAJunkRepair":      [0, 1],
+        "Command_UpgradeGLARadarVanScan":    [0, 2],
+        "Command_UpgradeGLAAPRockets":       [1, 0],
+        "Command_UpgradeGLABuggyAmmo":       [1, 1],
+        "Command_UpgradeGLAWorkerShoes":     [1, 2],
+        "Command_Sell":                      [1, 6]
+    },
+    "Chem_GLASupplyStashCommandSet": {
+        "Chem_Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":            [0, 6],
+        "Command_Sell":                     [1, 6]
+    },
+    "Chem_GLATunnelNetworkCommandSet": {
+        "Command_TunnelEvacuate":  [0, 5],
+        "Command_SetRallyPoint":   [0, 6],
+        "Command_Stop":            [1, 5],
+        "Command_Sell":            [1, 6]
+    },
+    "Chem_GLAStingerSiteCommandSet": {
+        "Command_Stop":  [0, 6],
+        "Command_Sell":  [1, 6]
+    },
+    "Chem_GLAScudStormCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "GLADemoTrapCommandSet": {
+        "Command_SetDemoTrapProximityDetonation":  [0, 0],
+        "Command_DetonateDemoTrap":                [0, 2],
+        "Command_SetDemoTrapManualDetonation":     [1, 0],
+        "Command_Sell":                            [1, 6]
+    },
+    "GLASneakAttackTunnelCommandSet": {
+        "Command_Evacuate":       [0, 5],
+        "Command_SetRallyPoint":  [0, 6]
+    },
+    "Slth_GLAWorkerCommandSet": {
+        "Slth_Command_ConstructGLASupplyStash":    [0, 0],
+        "Slth_Command_ConstructGLABarracks":       [0, 1],
+        "Slth_Command_ConstructGLAStingerSite":    [0, 2],
+        "Slth_Command_ConstructGLATunnelNetwork":  [0, 3],
+        "Slth_Command_ConstructGLAArmsDealer":     [0, 4],
+        "Command_UpgradeGLAWorkerFakeCommandSet":  [0, 6],
+        "Slth_Command_ConstructGLADemoTrap":       [1, 0],
+        "Slth_Command_ConstructGLAPalace":         [1, 1],
+        "Slth_Command_ConstructGLABlackMarket":    [1, 2],
+        "Slth_Command_ConstructGLAScudStorm":      [1, 3],
+        "Slth_Command_ConstructGLACommandCenter":  [1, 4],
+        "Command_DisarmMinesAtPosition":           [1, 6]
+    },
+    "Slth_GLAWorkerFakeBuildingsCommandSet": {
+        "Slth_Command_ConstructFakeGLACommandCenter":  [0, 0],
+        "Slth_Command_ConstructFakeGLABarracks":       [0, 1],
+        "Slth_Command_ConstructFakeGLASupplyStash":    [0, 2],
+        "Slth_Command_ConstructFakeGLAArmsDealer":     [0, 3],
+        "Slth_Command_ConstructFakeGLABlackMarket":    [0, 4],
+        "Command_UpgradeGLAWorkerRealCommandSet":      [0, 6]
+    },
+    "Slth_GLACommandCenterCommandSet": {
+        "Slth_Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":            [0, 6],
+        "Command_UpgradeGLACamoNetting":    [1, 5],
+        "Command_Sell":                     [1, 6]
+    },
+    "Slth_GLABarracksCommandSet": {
+        "Command_ConstructGLAInfantryRebel":               [0, 0],
+        "Command_ConstructGLAInfantryTerrorist":           [0, 1],
+        "Command_ConstructGLAInfantryHijacker":            [0, 2],
+        "Command_ConstructGLAInfantrySaboteur":            [0, 3],
+        "Command_UpgradeGLARebelCaptureBuilding":          [0, 5],
+        "Command_SetRallyPoint":                           [0, 6],
+        "Command_ConstructGLAInfantryRPGTrooper":          [1, 0],
+        "Command_ConstructGLAInfantryAngryMob":            [1, 1],
+        "Command_ConstructGLAInfantryJarmenKell":          [1, 2],
+        "Command_UpgradeGLAInfantryRebelBoobyTrapAttack":  [1, 3],
+        "Command_UpgradeGLACamoNetting":                   [1, 5],
+        "Command_Sell":                                    [1, 6]
+    },
+    "Slth_GLAArmsDealerCommandSet": {
+        "Slth_Command_ConstructGLAVehicleRadarVan":     [0, 1],
+        "Slth_Command_ConstructGLAVehicleToxinTruck":   [0, 2],
+        "Slth_Command_ConstructGLAVehicleCombatBike":   [0, 5],
+        "Command_SetRallyPoint":                        [0, 6],
+        "Slth_Command_ConstructGLAVehicleTechnical":    [1, 0],
+        "Slth_Command_ConstructGLAVehicleQuadCannon":   [1, 1],
+        "Slth_Command_ConstructGLAVehicleRocketBuggy":  [1, 2],
+        "Slth_Command_ConstructGLAVehicleBombTruck":    [1, 3],
+        "Slth_Command_ConstructGLAVehicleBattleBus":    [1, 4],
+        "Command_UpgradeGLACamoNetting":                [1, 5],
+        "Command_Sell":                                 [1, 6]
+    },
+    "Slth_GLAPalaceCommandSet": {
+        "Command_UpgradeGLAFortifiedStructure":  [0, 3],
+        "Command_UpgradeGLAAnthraxBeta":         [0, 5],
+        "Command_Evacuate":                      [1, 2],
+        "Command_UpgradeGLAArmTheMob":           [1, 3],
+        "Command_UpgradeGLACamoNetting":         [1, 5],
+        "Command_Sell":                          [1, 6]
+    },
+    "Slth_GLABlackMarketCommandSet": {
+        "Command_UpgradeGLAAPBullets":     [0, 0],
+        "Command_UpgradeGLAJunkRepair":    [0, 1],
+        "Command_UpgradeGLARadarVanScan":  [0, 2],
+        "Command_UpgradeGLAAPRockets":     [1, 0],
+        "Command_UpgradeGLABuggyAmmo":     [1, 1],
+        "Command_UpgradeGLAWorkerShoes":   [1, 2],
+        "Command_UpgradeGLACamoNetting":   [1, 5],
+        "Command_Sell":                    [1, 6]
+    },
+    "Slth_GLASupplyStashCommandSet": {
+        "Slth_Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":            [0, 6],
+        "Command_UpgradeGLACamoNetting":    [1, 5],
+        "Command_Sell":                     [1, 6]
+    },
+    "Slth_GLATunnelNetworkCommandSet": {
+        "Command_TunnelEvacuate":  [0, 5],
+        "Command_SetRallyPoint":   [0, 6],
+        "Command_Stop":            [1, 5],
+        "Command_Sell":            [1, 6]
+    },
+    "Slth_GLAStingerSiteCommandSet": {
+        "Command_Stop":  [0, 6],
+        "Command_Sell":  [1, 6]
+    },
+    "Slth_GLAScudStormCommandSet": {
+        "Command_UpgradeGLACamoNetting":  [1, 5],
+        "Command_Sell":                   [1, 6]
+    },
+    "Slth_GLADemoTrapCommandSet": {
+        "Command_SetDemoTrapProximityDetonation":  [0, 0],
+        "Command_DetonateDemoTrap":                [0, 3],
+        "Command_SetDemoTrapManualDetonation":     [1, 0],
+        "Command_Sell":                            [1, 6]
+    },
+    "Demo_GLAWorkerCommandSet": {
+        "Demo_Command_ConstructGLASupplyStash":    [0, 0],
+        "Demo_Command_ConstructGLABarracks":       [0, 1],
+        "Demo_Command_ConstructGLAStingerSite":    [0, 2],
+        "Demo_Command_ConstructGLATunnelNetwork":  [0, 3],
+        "Demo_Command_ConstructGLAArmsDealer":     [0, 4],
+        "Demo_Command_TertiarySuicide":            [0, 5],
+        "Command_UpgradeGLAWorkerFakeCommandSet":  [0, 6],
+        "Demo_Command_ConstructGLADemoTrap":       [1, 0],
+        "Demo_Command_ConstructGLAPalace":         [1, 1],
+        "Demo_Command_ConstructGLABlackMarket":    [1, 2],
+        "Demo_Command_ConstructGLAScudStorm":      [1, 3],
+        "Demo_Command_ConstructGLACommandCenter":  [1, 4],
+        "Command_DisarmMinesAtPosition":           [1, 6]
+    },
+    "Demo_GLAWorkerFakeBuildingsCommandSet": {
+        "Demo_Command_ConstructFakeGLACommandCenter":  [0, 0],
+        "Demo_Command_ConstructFakeGLABarracks":       [0, 1],
+        "Demo_Command_ConstructFakeGLASupplyStash":    [0, 2],
+        "Demo_Command_ConstructFakeGLAArmsDealer":     [0, 3],
+        "Demo_Command_ConstructFakeGLABlackMarket":    [0, 4],
+        "Command_UpgradeGLAWorkerRealCommandSet":      [0, 6]
+    },
+    "Demo_GLACommandCenterCommandSet": {
+        "Demo_Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":            [0, 6],
+        "Command_Sell":                     [1, 6]
+    },
+    "Demo_GLABarracksCommandSet": {
+        "Demo_Command_ConstructGLAInfantryRebel":               [0, 0],
+        "Demo_Command_ConstructGLAInfantryTerrorist":           [0, 1],
+        "Command_UpgradeGLARebelCaptureBuilding":               [0, 5],
+        "Command_SetRallyPoint":                                [0, 6],
+        "Demo_Command_ConstructGLAInfantryRPGTrooper":          [1, 0],
+        "Demo_Command_ConstructGLAInfantryAngryMob":            [1, 1],
+        "Demo_Command_ConstructGLAInfantryJarmenKell":          [1, 2],
+        "Demo_Command_UpgradeGLAInfantryRebelBoobyTrapAttack":  [1, 3],
+        "Command_Sell":                                         [1, 6]
+    },
+    "Demo_GLAArmsDealerCommandSet": {
+        "Demo_Command_ConstructGLATankScorpion":         [0, 0],
+        "Demo_Command_ConstructGLAVehicleRadarVan":      [0, 1],
+        "Demo_Command_ConstructGLAVehicleToxinTruck":    [0, 2],
+        "Demo_Command_ConstructGLATankMarauder":         [0, 3],
+        "Demo_Command_ConstructGLAVehicleScudLauncher":  [0, 4],
+        "Demo_Command_ConstructGLAVehicleCombatBike":    [0, 5],
+        "Command_SetRallyPoint":                         [0, 6],
+        "Demo_Command_ConstructGLAVehicleTechnical":     [1, 0],
+        "Demo_Command_ConstructGLAVehicleQuadCannon":    [1, 1],
+        "Demo_Command_ConstructGLAVehicleRocketBuggy":   [1, 2],
+        "Demo_Command_ConstructGLAVehicleBombTruck":     [1, 3],
+        "Command_UpgradeGLAScorpionRocket":              [1, 4],
+        "Demo_Command_ConstructGLAVehicleBattleBus":     [1, 5],
+        "Command_Sell":                                  [1, 6]
+    },
+    "Demo_GLAPalaceCommandSet": {
+        "Command_Evacuate":                      [1, 2],
+        "Command_UpgradeGLAFortifiedStructure":  [0, 3],
+        "Demo_UpgradeSuicideBomb":               [0, 6],
+        "Command_UpgradeGLAArmTheMob":           [1, 3],
+        "Command_Sell":                          [1, 6]
+    },
+    "Demo_GLABlackMarketCommandSet": {
+        "Command_UpgradeGLAAPBullets":     [0, 0],
+        "Command_UpgradeGLAJunkRepair":    [0, 1],
+        "Command_UpgradeGLARadarVanScan":  [0, 2],
+        "Command_UpgradeGLAAPRockets":     [1, 0],
+        "Command_UpgradeGLABuggyAmmo":     [1, 1],
+        "Command_UpgradeGLAWorkerShoes":   [1, 2],
+        "Command_Sell":                    [1, 6]
+    },
+    "Demo_GLASupplyStashCommandSet": {
+        "Demo_Command_ConstructGLAWorker":  [0, 0],
+        "Command_SetRallyPoint":            [0, 6],
+        "Command_Sell":                     [1, 6]
+    },
+    "Demo_GLATunnelNetworkCommandSet": {
+        "Command_TunnelEvacuate":  [0, 5],
+        "Command_Stop":            [1, 5],
+        "Command_SetRallyPoint":   [0, 6],
+        "Command_Sell":            [1, 6]
+    },
+    "Demo_GLAStingerSiteCommandSet": {
+        "Command_Stop":  [0, 6],
+        "Command_Sell":  [1, 6]
+    },
+    "Demo_GLAScudStormCommandSet": {
+        "Command_Sell":  [1, 6]
+    },
+    "Demo_GLADemoTrapCommandSet": {
+        "Command_SetDemoTrapProximityDetonation":  [0, 0],
+        "Command_DetonateDemoTrap":                [0, 2],
+        "Command_SetDemoTrapManualDetonation":     [1, 0],
+        "Command_Sell":                            [1, 6]
+    }
+}
