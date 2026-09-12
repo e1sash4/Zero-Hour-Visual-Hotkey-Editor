@@ -47,6 +47,181 @@ GENERAL_POWER_EXCLUSIONS = {
     ("China", "Nuclear"): {"Command_NapalmStrike"},
 }
 
+# These are grouped by what the player is controlling instead of by each
+# individual Object/CommandSet. Every card still uses a real CommandButton,
+# its CSF label and its original in-game MappedImage.
+ACTIVE_ACTION_GROUPS = {
+    "USA": {
+        "Unit Actions": (
+            "CONTROLBAR:AttackMove", "CONTROLBAR:Guard", "CONTROLBAR:GuardFlyingUnitsOnly",
+            "CONTROLBAR:Stop", "CONTROLBAR:DisarmMinesAtPosition", "CONTROLBAR:AmbulanceCleanupArea",
+            "CONTROLBAR:FireRocketPods", "CONTROLBAR:LaserMissileAttack",
+            "CONTROLBAR:ConstructAmericaVehicleBattleDrone",
+            "CONTROLBAR:ConstructAmericaVehicleHellfireDrone",
+            "CONTROLBAR:ConstructAmericaVehicleScoutDrone", "CONTROLBAR:Evacuate",
+        ),
+        "Building Actions": (
+            "CONTROLBAR:Sell", "CONTROLBAR:SetRallyPoint", "CONTROLBAR:Evacuate",
+        ),
+        "Infantry Actions": (
+            "CONTROLBAR:KnifeAttack", "CONTROLBAR:TimedDemoCharge", "CONTROLBAR:RemoteDemoCharge",
+            "CONTROLBAR:DetonateCharges", "CONTROLBAR:FlashBangGrenadeMode",
+            "CONTROLBAR:RangerMachineGun", "CONTROLBAR:CaptureBuilding",
+        ),
+    },
+    "China": {
+        "Unit Actions": (
+            "CONTROLBAR:AttackMove", "CONTROLBAR:Guard", "CONTROLBAR:GuardFlyingUnitsOnly",
+            "CONTROLBAR:Stop", "CONTROLBAR:DisarmMinesAtPosition", "CONTROLBAR:FireWall",
+            "CONTROLBAR:ECMDisableVehicle", "CONTROLBAR:DropNapalmBomb", "CONTROLBAR:DropNukeBomb",
+            "CONTROLBAR:NeutronWarhead", "CONTROLBAR:NukeWarhead", "CONTROLBAR:Evacuate",
+            "CONTROLBAR:TransportExit",
+        ),
+        "Building Actions": (
+            "CONTROLBAR:Sell", "CONTROLBAR:SetRallyPoint", "CONTROLBAR:Evacuate",
+            "CONTROLBAR:BunkerExit", "CONTROLBAR:StructureExit", "CONTROLBAR:Stop",
+            "CONTROLBAR:Overcharge",
+        ),
+        "Infantry Actions": (
+            "CONTROLBAR:CaptureBuilding", "CONTROLBAR:TNTAttack", "CONTROLBAR:InternetHack",
+            "CONTROLBAR:DisableBuildingHack", "CONTROLBAR:DisableVehicleHack",
+            "CONTROLBAR:StealCashHack",
+        ),
+    },
+    "GLA": {
+        "Unit Actions": (
+            "CONTROLBAR:AttackMove", "CONTROLBAR:Guard", "CONTROLBAR:Stop",
+            "CONTROLBAR:DisarmMinesAtPosition", "CONTROLBAR:Contaminate",
+            "CONTROLBAR:DetonateBombTruck", "CONTROLBAR:DisguiseAsVehicle",
+            "CONTROLBAR:RadarVanScan", "CONTROLBAR:AnthraxWarhead",
+            "CONTROLBAR:ExplosiveWarhead", "CONTROLBAR:Evacuate", "CONTROLBAR:TransportExit",
+        ),
+        "Building Actions": (
+            "CONTROLBAR:Sell", "CONTROLBAR:SetRallyPoint", "CONTROLBAR:Evacuate",
+            "CONTROLBAR:StructureExit", "CONTROLBAR:Stop", "CONTROLBAR:DetonateFakeBuilding",
+            "CONTROLBAR:ProximityFuse", "CONTROLBAR:ManualControl", "CONTROLBAR:Detonate",
+        ),
+        "Infantry Actions": (
+            "CONTROLBAR:CaptureBuilding", "CONTROLBAR:BoobyTrapAttack", "CONTROLBAR:CarBomb",
+            "CONTROLBAR:Hijack", "CONTROLBAR:SabotageBuilding", "CONTROLBAR:SniperAttack",
+            "CONTROLBAR:TimedDemoCharge", "CONTROLBAR:RemoteDemoCharge",
+            "CONTROLBAR:DetonateCharges", "CONTROLBAR:SuicideAttack",
+        ),
+    },
+}
+
+FACTION_GENERALS = {
+    "USA": ("Vanilla", "Air Force", "Laser", "Superweapon"),
+    "China": ("Vanilla", "Tank", "Infantry", "Nuclear"),
+    "GLA": ("Vanilla", "Toxin", "Stealth", "Demolition"),
+}
+
+NON_ACTION_COMMANDS = {
+    "UNIT_BUILD", "PLAYER_UPGRADE", "DOZER_CONSTRUCT",
+    "DOZER_CONSTRUCT_CANCEL", "PURCHASE_SCIENCE", "SPECIAL_POWER_FROM_SHORTCUT",
+}
+
+
+def _is_active_button(button) -> bool:
+    return bool(
+        button and button.text_label and button.button_image
+        and button.command not in NON_ACTION_COMMANDS
+        and "NEED_SPECIAL_POWER_SCIENCE" not in button.fields.get("Options", "").split()
+    )
+
+
+def append_active_action_groups(
+        db: GameDatabase, csf: CsfFile, allowed_producers: dict[str, set[str]] | None = None,
+        visible_layouts: dict[str, dict[str, list[int]]] | None = None) -> None:
+    """Expose active commands once per faction general in three virtual pages."""
+    allowed_producers = allowed_producers or {}
+    visible_layouts = visible_layouts or {}
+    objects = sorted(db.objects.values(), key=lambda item: item.id)
+    buildable_objects = {
+        button.object_id for button in db.buttons.values()
+        if button.command == "UNIT_BUILD" and button.object_id
+    }
+    for faction, groups in ACTIVE_ACTION_GROUPS.items():
+        for general in FACTION_GENERALS[faction]:
+            for group_name, labels in groups.items():
+                page_id = f"ActiveActions/{faction}/{general}/{group_name}"
+                allowed = allowed_producers.get(f"{faction}/{general}")
+                if allowed is not None and page_id not in allowed:
+                    continue
+                layout = visible_layouts.get(page_id)
+                layout_keys = {key.casefold() for key in layout} if layout is not None else set()
+                wanted = {label.casefold() for label in labels}
+                unit_labels = {
+                    label.casefold() for label in groups["Unit Actions"]
+                }
+                found = {}
+                for obj in objects:
+                    if classify(obj.id, obj.command_set) != (faction, general):
+                        continue
+                    if "SELECTABLE" not in obj.kind_of:
+                        continue
+                    if group_name == "Building Actions" and "STRUCTURE" not in obj.kind_of:
+                        continue
+                    if group_name != "Building Actions" and "STRUCTURE" in obj.kind_of:
+                        continue
+                    if group_name == "Infantry Actions" and "INFANTRY" not in obj.kind_of:
+                        continue
+                    command_set = db.command_sets.get(obj.command_set)
+                    if not command_set:
+                        continue
+                    for game_slot, button_id in sorted(command_set.slots.items()):
+                        button = db.buttons.get(button_id)
+                        folded = button.text_label.casefold() if button else ""
+                        configured = bool(button and (
+                            button.id.casefold() in layout_keys or folded in layout_keys
+                        ))
+                        discovered = (group_name != "Building Actions" and obj.id in buildable_objects
+                                      and _is_active_button(button))
+                        if group_name == "Unit Actions" and "INFANTRY" in obj.kind_of and folded not in wanted:
+                            discovered = False
+                        if group_name == "Infantry Actions" and folded in unit_labels:
+                            discovered = False
+                        if (folded in wanted or discovered or configured) and folded not in found:
+                            found[folded] = (command_set, game_slot, button)
+
+                # Some stock objects contain a malformed CommandSet reference,
+                # so correctly classified command sets are a safe fallback.
+                for command_set in sorted(db.command_sets.values(), key=lambda item: item.id):
+                    fallback_faction = classify(command_set.id, command_set.id)
+                    vanilla_gla_fake = (faction, general) == ("GLA", "Vanilla") \
+                        and command_set.id.startswith("FakeGLA")
+                    if fallback_faction != (faction, general) and not vanilla_gla_fake:
+                        continue
+                    for game_slot, button_id in sorted(command_set.slots.items()):
+                        button = db.buttons.get(button_id)
+                        folded = button.text_label.casefold() if button else ""
+                        configured = bool(button and (
+                            button.id.casefold() in layout_keys or folded in layout_keys
+                        ))
+                        if (folded in wanted or configured) and folded not in found:
+                            found[folded] = (command_set, game_slot, button)
+
+                discovered_labels = sorted(
+                    (button.text_label for folded, (_command_set, _slot, button) in found.items()
+                     if folded not in wanted),
+                    key=lambda label: (csf.get(label) or label).replace("&", "").casefold(),
+                )
+                ordered_labels = (*labels, *discovered_labels)
+                for visual_slot, label in enumerate(ordered_labels, 1):
+                    match = found.get(label.casefold())
+                    if not match:
+                        continue
+                    command_set, _game_slot, button = match
+                    if layout is not None and (button.id.casefold() not in layout_keys
+                                               and button.text_label.casefold() not in layout_keys):
+                        continue
+                    localized = csf.get(button.text_label)
+                    display = localized.replace("&", "") if localized else friendly_identifier(button.id)
+                    db.contexts.append(CommandContext(
+                        faction, general, page_id,
+                        group_name, command_set.id, visual_slot, button, None, display,
+                    ))
+
 
 class CsfLoadError(ValueError):
     def __init__(self, path: Path, loose_override: bool, reason: Exception):
@@ -249,6 +424,7 @@ class GameIndexer:
                 ))
                 if button.text_label.casefold() not in csf_labels:
                     db.warnings.append(f"Missing CSF label: {button.text_label}")
+        append_active_action_groups(db, self.csf, allowed_producers, visible_layouts)
         report(78, "Extracting referenced icons")
         required = {item.button.button_image for item in db.contexts}
         for number, image_id in enumerate(sorted(required), 1):

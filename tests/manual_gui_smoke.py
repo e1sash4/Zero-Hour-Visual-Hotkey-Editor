@@ -7,7 +7,7 @@ from PySide6.QtTest import QTest
 from PySide6.QtCore import Qt
 
 from app.i18n import set_language, tr
-from app.main_window import MainWindow
+from app.main_window import ACTION_GROUP_KEYS, MainWindow
 import app.main_window as main_window_module
 from app.theme import style_for
 from ui.global_hotkeys_dialog import GlobalHotkeysDialog
@@ -31,6 +31,26 @@ def run(game_dir: str) -> int:
         print(f"ukrainian_language={tr('settings') == 'Налаштування'}")
         print(f"logos={logos}")
         print(f"contexts={len(window.db.contexts)}")
+        action_pages = []
+        for faction in ("USA", "China", "GLA"):
+            window.select_faction(faction)
+            for general_index in range(window.general.count()):
+                window.general.setCurrentIndex(general_index)
+                groups = {
+                    window.producer_list.item(i).data(Qt.ItemDataRole.UserRole)
+                    for i in range(window.producer_list.count())
+                }
+                group_icons = [
+                    not window.producer_list.item(i).icon().isNull()
+                    for i in range(window.producer_list.count())
+                    if window.producer_list.item(i).data(Qt.ItemDataRole.UserRole) in ACTION_GROUP_KEYS
+                ]
+                action_pages.append((
+                    faction, window.general.currentData(),
+                    set(ACTION_GROUP_KEYS) <= groups and len(group_icons) == 3 and all(group_icons),
+                ))
+        print(f"action_pages={action_pages}")
+        result["ok"] = result["ok"] and all(ok for _, _, ok in action_pages)
         window.select_faction("USA")
         producer_icons = sum(not window.producer_list.item(i).icon().isNull() for i in range(window.producer_list.count()))
         dialog = GlobalHotkeysDialog(window.command_map_source, window.csf, window.assets, window.db, window.hotkeys,
@@ -41,7 +61,7 @@ def run(game_dir: str) -> int:
         for target in window.db.contexts:
             for occupied in window.db.contexts:
                 if (target.command_set_id == occupied.command_set_id and target.identity != occupied.identity
-                        and window.hotkeys.get_hotkey(occupied) and
+                        and len(window.hotkeys.get_hotkey(occupied) or "") == 1 and
                         window.hotkeys.get_hotkey(target) != window.hotkeys.get_hotkey(occupied)):
                     pairs = [target, occupied]
                     break

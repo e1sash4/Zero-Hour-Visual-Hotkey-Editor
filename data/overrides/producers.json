@@ -1,5 +1,8 @@
 {
 	"USA/Vanilla": [
+		"ActiveActions/USA/Vanilla/Unit Actions",
+		"ActiveActions/USA/Vanilla/Building Actions",
+		"ActiveActions/USA/Vanilla/Infantry Actions",
 		"AmericaDozerCommandSet",
 		"AmericaCommandCenterCommandSet",
 		"AmericaBarracksCommandSet",
@@ -12,6 +15,9 @@
 		"AmericaParticleUplinkCannonCommandSet"
 	],
 	"USA/Air Force": [
+		"ActiveActions/USA/Air Force/Unit Actions",
+		"ActiveActions/USA/Air Force/Building Actions",
+		"ActiveActions/USA/Air Force/Infantry Actions",
 		"AirF_AmericaDozerCommandSet",
 		"AirF_AmericaCommandCenterCommandSet",
 		"AirF_AmericaBarracksCommandSet",
@@ -25,6 +31,9 @@
 		"AmericaPatriotBatteryCommandSet"
 	],
 	"USA/Laser": [
+		"ActiveActions/USA/Laser/Unit Actions",
+		"ActiveActions/USA/Laser/Building Actions",
+		"ActiveActions/USA/Laser/Infantry Actions",
 		"Lazr_AmericaDozerCommandSet",
 		"Lazr_AmericaCommandCenterCommandSet",
 		"Lazr_AmericaBarracksCommandSet",
@@ -38,6 +47,9 @@
 		"Lazr_AmericaParticleUplinkCannonCommandSet"
 	],
 	"USA/Superweapon": [
+		"ActiveActions/USA/Superweapon/Unit Actions",
+		"ActiveActions/USA/Superweapon/Building Actions",
+		"ActiveActions/USA/Superweapon/Infantry Actions",
 		"SupW_AmericaDozerCommandSet",
 		"SupW_AmericaCommandCenterCommandSet",
 		"SupW_AmericaBarracksCommandSet",
@@ -51,6 +63,9 @@
 		"SupW_AmericaParticleUplinkCannonCommandSet"
 	],
 	"China/Vanilla": [
+		"ActiveActions/China/Vanilla/Unit Actions",
+		"ActiveActions/China/Vanilla/Building Actions",
+		"ActiveActions/China/Vanilla/Infantry Actions",
 		"ChinaDozerCommandSet",
 		"ChinaCommandCenterCommandSet",
 		"ChinaBarracksCommandSet",
@@ -66,6 +81,9 @@
 		"ChinaNuclearMissileCommandSet"
 	],
 	"China/Tank": [
+		"ActiveActions/China/Tank/Unit Actions",
+		"ActiveActions/China/Tank/Building Actions",
+		"ActiveActions/China/Tank/Infantry Actions",
 		"Tank_ChinaDozerCommandSet",
 		"Tank_ChinaCommandCenterCommandSet",
 		"Tank_ChinaBarracksCommandSet",
@@ -77,6 +95,9 @@
 		"Tank_ChinaNuclearMissileCommandSet"
 	],
 	"China/Infantry": [
+		"ActiveActions/China/Infantry/Unit Actions",
+		"ActiveActions/China/Infantry/Building Actions",
+		"ActiveActions/China/Infantry/Infantry Actions",
 		"Infa_ChinaDozerCommandSet",
 		"Infa_ChinaCommandCenterCommandSet",
 		"Infa_ChinaBarracksCommandSet",
@@ -90,6 +111,9 @@
 		"Infa_ChinaNuclearMissileCommandSet"
 	],
 	"China/Nuclear": [
+		"ActiveActions/China/Nuclear/Unit Actions",
+		"ActiveActions/China/Nuclear/Building Actions",
+		"ActiveActions/China/Nuclear/Infantry Actions",
 		"Nuke_ChinaDozerCommandSet",
 		"Nuke_ChinaCommandCenterCommandSet",
 		"Nuke_ChinaBarracksCommandSet",
@@ -101,6 +125,9 @@
 		"Nuke_ChinaNuclearMissileCommandSet"
 	],
 	"GLA/Vanilla": [
+		"ActiveActions/GLA/Vanilla/Unit Actions",
+		"ActiveActions/GLA/Vanilla/Building Actions",
+		"ActiveActions/GLA/Vanilla/Infantry Actions",
 		"GLAWorkerCommandSet",
 		"GLAWorkerFakeBuildingsCommandSet",
 		"GLACommandCenterCommandSet",
@@ -115,6 +142,9 @@
 		"GLADemoTrapCommandSet"
 	],
 	"GLA/Toxin": [
+		"ActiveActions/GLA/Toxin/Unit Actions",
+		"ActiveActions/GLA/Toxin/Building Actions",
+		"ActiveActions/GLA/Toxin/Infantry Actions",
 		"Chem_GLAWorkerCommandSet",
 		"Chem_GLAWorkerFakeBuildingsCommandSet",
 		"Chem_GLACommandCenterCommandSet",
@@ -130,6 +160,9 @@
 		"GLASneakAttackTunnelCommandSet"
 	],
 	"GLA/Stealth": [
+		"ActiveActions/GLA/Stealth/Unit Actions",
+		"ActiveActions/GLA/Stealth/Building Actions",
+		"ActiveActions/GLA/Stealth/Infantry Actions",
 		"Slth_GLAWorkerCommandSet",
 		"Slth_GLAWorkerFakeBuildingsCommandSet",
 		"Slth_GLACommandCenterCommandSet",
@@ -144,6 +177,9 @@
 		"Slth_GLADemoTrapCommandSet"
 	],
 	"GLA/Demolition": [
+		"ActiveActions/GLA/Demolition/Unit Actions",
+		"ActiveActions/GLA/Demolition/Building Actions",
+		"ActiveActions/GLA/Demolition/Infantry Actions",
 		"Demo_GLAWorkerCommandSet",
 		"Demo_GLAWorkerFakeBuildingsCommandSet",
 		"Demo_GLACommandCenterCommandSet",

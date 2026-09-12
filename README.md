@@ -40,6 +40,7 @@ The editor reads the installed game, recreates its command-bar structure, extrac
 
 - Browse commands using the game's real locally extracted unit, building, upgrade, and ability icons.
 - Navigate by faction, general, and producer instead of internal INI or CSF identifiers.
+- Use dedicated **Unit Actions**, **Building Actions**, and **Infantry Actions** pages for every official general.
 - Keep command buttons in their in-game command-bar positions.
 - Search for commands such as Humvee, Raptor, Overlord, Tunnel Network, and more.
 - See producer icons, faction emblems, general portraits, and dedicated General Powers categories.
@@ -62,9 +63,23 @@ Unused and debug factions are hidden from the normal interface.
 - Right-click a virtual key to remove one specific binding or every binding assigned to it.
 - Clear all faction command-bar bindings in one action.
 - Use **Ctrl+Z** and **Ctrl+Y** before applying changes.
-- Bind commands to standard mouse buttons **M3**, **M4**, and **M5**. The editor remaps them only while Zero Hour is the foreground application and must remain running during play.
 
-The mouse diagram beside the virtual keyboard shows left/right buttons for orientation and provides clickable M3/M4/M5 zones. Mouse bindings use configurable internal CSF keys; the less commonly used **7**, **8**, and **9** are selected by default and can be changed in Settings. While the game is active, the editor translates those mouse presses into hardware-style keyboard scan codes for compatibility with Zero Hour's legacy input handling. If the game is launched as administrator, the editor must be launched as administrator too. Windows exposes the middle button and two side buttons through its standard mouse API. Gaming mice with additional vendor-specific buttons should map those buttons to keyboard keys in the mouse manufacturer's software.
+### Mouse button bindings
+
+Mouse bindings are **enabled by default on the first launch** and can be turned
+off at any time in Settings.
+
+- Assign command-bar actions to the standard **M3**, **M4**, and **M5** mouse buttons.
+- Use the clickable mouse diagram beside the virtual keyboard to select a button.
+- Keep the editor running while playing. Remapping is active only while Zero Hour is the foreground application.
+- Change the internal proxy keys in Settings. The less commonly used **7**, **8**, and **9** keys are selected by default.
+- If Zero Hour runs as administrator, run the editor as administrator too so Windows permits input forwarding.
+
+The editor translates M3/M4/M5 presses into hardware-style keyboard scan codes
+for compatibility with Zero Hour's legacy input handling. Windows exposes only
+these three extra buttons through its standard mouse API. Map additional
+vendor-specific mouse buttons to keyboard keys in the mouse manufacturer's
+software.
 
 ### Context-aware conflict detection
 
@@ -99,6 +114,10 @@ Command-bar hotkeys and global controls are both supported. The Global Hotkeys w
 - New CSF and CommandMap files are validated before replacing an existing override.
 - Writes use temporary files and atomic replacement.
 - Restore the latest backup or return to the archive-provided original.
+- If Windows blocks writes to a protected game folder, the editor preserves the
+  finished configuration and offers to restart with administrator privileges.
+  If elevated installation is still blocked, it opens the saved files and shows
+  the exact game paths where they can be copied manually.
 - The original BIG archives are never modified or repacked.
 
 ### Profiles, languages, and themes
@@ -140,7 +159,7 @@ The Zero Hour theme changes its colors and visual accents to match the currently
 ### Download a Windows release
 
 1. Open the [Releases page](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/releases).
-2. Download `ZeroHourHotkeyEditor-v0.2.0-Windows.zip` (or the newest available version).
+2. Download `ZeroHourHotkeyEditor-v0.3.0-Windows.zip` (or the newest available version).
 3. Extract the **entire** archive to a normal folder.
 4. Run `ZeroHourHotkeyEditor.exe` from the extracted folder.
 
@@ -165,7 +184,7 @@ Indexing runs in the background, so the interface remains responsive. Cached ico
 
 1. Select **USA**, **China**, or **GLA**.
 2. Select the vanilla faction or one of its three generals.
-3. Choose a producer, building, or **General Powers**.
+3. Choose a producer, **General Powers**, **Unit Actions**, **Building Actions**, or **Infantry Actions**.
 4. Click the command you want to edit.
 5. Press a key on the physical or virtual keyboard.
 6. Resolve a conflict if the selected key is already used in the same context.
@@ -223,6 +242,13 @@ The stock command database is discovered from the game automatically. Two small 
 
 - `data/overrides/producers.json` controls which producer CommandSets are shown for each faction and general, as well as their order.
 - `data/overrides/layouts.json` controls visible commands and their `[row, column]` positions inside a CommandSet.
+
+The aggregated Unit, Building and Infantry pages use per-general identifiers
+such as `ActiveActions/USA/Air Force/Unit Actions`. Remove that identifier from one general in
+`producers.json` to hide the whole page. In `layouts.json`, remove a
+`CONTROLBAR:` entry to hide one action, or change its coordinates. Rows and
+columns are zero-based and additional rows are supported. Each official general
+has its own independent block.
 
 These files contain technical identifiers only; they do not contain copyrighted textures or localized game text. They can be edited to correct a position, hide a command unavailable to a particular general, or add a valid command discovered in the installed game data.
 
