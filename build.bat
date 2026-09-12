@@ -1,7 +1,7 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-set VERSION=0.3.0
+set VERSION=0.2.0
 set PYTHONNOUSERSITE=1
 if not exist ".build-temp" mkdir ".build-temp"
 set TEMP=%CD%\.build-temp

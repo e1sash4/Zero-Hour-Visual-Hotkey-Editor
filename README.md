@@ -159,7 +159,7 @@ The Zero Hour theme changes its colors and visual accents to match the currently
 ### Download a Windows release
 
 1. Open the [Releases page](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/releases).
-2. Download `ZeroHourHotkeyEditor-v0.3.0-Windows.zip` (or the newest available version).
+2. Download `ZeroHourHotkeyEditor-v0.2.0-Windows.zip` (or the newest available version).
 3. Extract the **entire** archive to a normal folder.
 4. Run `ZeroHourHotkeyEditor.exe` from the extracted folder.
 

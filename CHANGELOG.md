@@ -2,12 +2,16 @@
 
 All notable changes to Zero Hour Visual Hotkey Editor are documented here.
 
-## [0.3.0] - 2026-09-12
+## [0.2.0] - 2026-09-12
 
 ### Added
 
 - Dedicated Unit Actions, Building Actions, and Infantry Actions pages for all
   twelve official factions and generals.
+- Mouse hotkeys for the standard M3, M4, and M5 buttons, enabled by default on
+  first launch and active only while Zero Hour is in the foreground.
+- Global hotkey editing, reusable profiles, backups, multilingual UI, and
+  selectable application themes.
 - Independent, configurable action layouts for every general, including
   support for additional grid rows.
 - Automatic discovery of configured active abilities while preserving their
@@ -37,8 +41,3 @@ All notable changes to Zero Hour Visual Hotkey Editor are documented here.
 - Valid fourth and later grid rows being rejected by configuration tests.
 - Failed writes to protected game installations losing a straightforward path
   to applying the generated configuration.
-
-## [0.2.0]
-
-- Added mouse hotkeys, global controls, profiles, backups, themes, and expanded
-  game configuration handling.
