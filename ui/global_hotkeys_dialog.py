@@ -7,6 +7,7 @@ from PySide6.QtWidgets import (QComboBox, QDialog, QDialogButtonBox, QHBoxLayout
                                QPushButton, QTreeWidget, QTreeWidgetItem, QVBoxLayout, QKeySequenceEdit)
 
 from core.backup_manager import BackupManager
+from core.write_recovery import is_access_error
 from core.command_map import CommandMapFile, GlobalBinding
 from models import CommandContext
 from app.i18n import tr
@@ -173,12 +174,20 @@ class GlobalHotkeysDialog(QDialog):
 
     def apply(self) -> None:
         target = self.game_dir / "Data/English/CommandMap.ini"
+        command_map_data = self.command_map.to_text().encode("utf-8")
+        recovery_files = {"CommandMap.ini": command_map_data}
+        if self.hotkeys.pending:
+            recovery_files["generals.csf"] = self.hotkeys.materialize().to_bytes()
         try:
             self.manager.create(target, self.source)
-            self.manager.atomic_write(target, self.command_map.to_text().encode("utf-8"))
+            self.manager.atomic_write(target, command_map_data)
             if self.hotkeys.pending:
                 self.apply_csf()
             self.applied = True
             QMessageBox.information(self, tr("applied"), tr("global_applied"))
         except Exception as exc:
-            QMessageBox.critical(self, tr("apply_failed"), str(exc))
+            handler = getattr(self.parent(), "handle_write_access_error", None)
+            if is_access_error(exc) and handler is not None:
+                handler(exc, recovery_files)
+            else:
+                QMessageBox.critical(self, tr("apply_failed"), str(exc))

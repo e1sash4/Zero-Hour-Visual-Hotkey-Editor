@@ -1064,5 +1064,454 @@
         "Command_DetonateDemoTrap":                [0, 2],
         "Command_SetDemoTrapManualDetonation":     [1, 0],
         "Command_Sell":                            [1, 6]
+    },
+
+
+
+    "ActiveActions/USA/Vanilla/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                  [0, 2],
+        "CONTROLBAR:Stop":                                  [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 4],
+
+        "CONTROLBAR:LaserMissileAttack":                    [1, 0],
+        "CONTROLBAR:FireRocketPods":                        [1, 1],
+        "CONTROLBAR:AmbulanceCleanupArea":                  [1, 2],
+
+        "CONTROLBAR:ConstructAmericaVehicleBattleDrone":    [2, 0],
+        "CONTROLBAR:ConstructAmericaVehicleHellfireDrone":  [2, 1],
+        "CONTROLBAR:ConstructAmericaVehicleScoutDrone":     [2, 2],
+        "CONTROLBAR:Evacuate":                              [2, 3],
+        "CONTROLBAR:CombatDrop":                            [2, 4]
+    },
+    "ActiveActions/USA/Vanilla/Building Actions": {
+        "CONTROLBAR:Sell":           [0, 0],
+        "CONTROLBAR:SetRallyPoint":  [0, 1],
+        "CONTROLBAR:Evacuate":       [0, 2]
+    },
+    "ActiveActions/USA/Vanilla/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":       [0, 0],
+        "CONTROLBAR:FlashBangGrenadeMode":  [0, 1],
+        "CONTROLBAR:RangerMachineGun":      [0, 2],
+
+        "CONTROLBAR:KnifeAttack":           [1, 0],
+        "CONTROLBAR:TimedDemoCharge":       [1, 1],
+        "CONTROLBAR:RemoteDemoCharge":      [1, 2],
+        "CONTROLBAR:DetonateCharges":       [1, 3]
+    },
+
+
+
+    "ActiveActions/USA/Air Force/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                  [0, 2],
+        "CONTROLBAR:Stop":                                  [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 4],
+
+        "CONTROLBAR:LaserMissileAttack":                    [1, 0],
+        "CONTROLBAR:FireRocketPods":                        [1, 1],
+        "CONTROLBAR:AmbulanceCleanupArea":                  [1, 2],
+
+        "CONTROLBAR:ConstructAmericaVehicleBattleDrone":    [2, 0],
+        "CONTROLBAR:ConstructAmericaVehicleHellfireDrone":  [2, 1],
+        "CONTROLBAR:ConstructAmericaVehicleScoutDrone":     [2, 2],
+        "CONTROLBAR:Evacuate":                              [2, 3],
+        "CONTROLBAR:CombatDrop":                            [2, 4]
+    },
+    "ActiveActions/USA/Air Force/Building Actions": {
+        "CONTROLBAR:Sell":           [0, 0],
+        "CONTROLBAR:SetRallyPoint":  [0, 1],
+        "CONTROLBAR:Evacuate":       [0, 2]
+    },
+    "ActiveActions/USA/Air Force/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":       [0, 0],
+        "CONTROLBAR:FlashBangGrenadeMode":  [0, 1],
+        "CONTROLBAR:RangerMachineGun":      [0, 2],
+
+        "CONTROLBAR:KnifeAttack":           [1, 0],
+        "CONTROLBAR:TimedDemoCharge":       [1, 1],
+        "CONTROLBAR:RemoteDemoCharge":      [1, 2],
+        "CONTROLBAR:DetonateCharges":       [1, 3]
+    },
+
+
+
+    "ActiveActions/USA/Laser/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                  [0, 2],
+        "CONTROLBAR:Stop":                                  [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 4],
+
+        "CONTROLBAR:LaserMissileAttack":                    [1, 0],
+        "CONTROLBAR:FireRocketPods":                        [1, 1],
+        "CONTROLBAR:AmbulanceCleanupArea":                  [1, 2],
+
+        "CONTROLBAR:ConstructAmericaVehicleBattleDrone":    [2, 0],
+        "CONTROLBAR:ConstructAmericaVehicleHellfireDrone":  [2, 1],
+        "CONTROLBAR:ConstructAmericaVehicleScoutDrone":     [2, 2],
+        "CONTROLBAR:Evacuate":                              [2, 3],
+        "CONTROLBAR:CombatDrop":                            [2, 4]
+    },
+    "ActiveActions/USA/Laser/Building Actions": {
+        "CONTROLBAR:Sell":           [0, 0],
+        "CONTROLBAR:SetRallyPoint":  [0, 1],
+        "CONTROLBAR:Evacuate":       [0, 2]
+    },
+    "ActiveActions/USA/Laser/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":       [0, 0],
+        "CONTROLBAR:FlashBangGrenadeMode":  [0, 1],
+        "CONTROLBAR:RangerMachineGun":      [0, 2],
+
+        "CONTROLBAR:KnifeAttack":           [1, 0],
+        "CONTROLBAR:TimedDemoCharge":       [1, 1],
+        "CONTROLBAR:RemoteDemoCharge":      [1, 2],
+        "CONTROLBAR:DetonateCharges":       [1, 3]
+    },
+
+
+
+    "ActiveActions/USA/Superweapon/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                  [0, 2],
+        "CONTROLBAR:Stop":                                  [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 4],
+
+        "CONTROLBAR:LaserMissileAttack":                    [1, 0],
+        "CONTROLBAR:FireRocketPods":                        [1, 1],
+        "CONTROLBAR:AmbulanceCleanupArea":                  [1, 2],
+
+        "CONTROLBAR:ConstructAmericaVehicleBattleDrone":    [2, 0],
+        "CONTROLBAR:ConstructAmericaVehicleHellfireDrone":  [2, 1],
+        "CONTROLBAR:ConstructAmericaVehicleScoutDrone":     [2, 2],
+        "CONTROLBAR:Evacuate":                              [2, 3],
+        "CONTROLBAR:CombatDrop":                            [2, 4]
+    },
+    "ActiveActions/USA/Superweapon/Building Actions": {
+        "CONTROLBAR:Sell":           [0, 0],
+        "CONTROLBAR:SetRallyPoint":  [0, 1],
+        "CONTROLBAR:Evacuate":       [0, 2]
+    },
+    "ActiveActions/USA/Superweapon/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":       [0, 0],
+        "CONTROLBAR:FlashBangGrenadeMode":  [0, 1],
+        "CONTROLBAR:RangerMachineGun":      [0, 2],
+
+        "CONTROLBAR:KnifeAttack":           [1, 0],
+        "CONTROLBAR:TimedDemoCharge":       [1, 1],
+        "CONTROLBAR:RemoteDemoCharge":      [1, 2],
+        "CONTROLBAR:DetonateCharges":       [1, 3]
+    },
+
+
+
+    "ActiveActions/China/Vanilla/Unit Actions": {
+        "CONTROLBAR:AttackMove":                           [0, 0],
+        "CONTROLBAR:Guard":                                [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                 [0, 2],
+        "CONTROLBAR:Stop":                                 [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                [0, 4],
+
+        "CONTROLBAR:FireWall":                             [1, 0],
+        "CONTROLBAR:ECMDisableVehicle":                    [1, 1],
+        "CONTROLBAR:NeutronWarhead":                       [1, 2],
+        "CONTROLBAR:NukeWarhead":                          [1, 3],
+
+        "CONTROLBAR:UpgradeChinaOverlordGattlingCannon":   [2, 0],
+        "CONTROLBAR:UpgradeChinaOverlordPropagandaTower":  [2, 1],
+        "CONTROLBAR:UpgradeChinaOverlordBattleBunker":     [2, 2],
+
+        "CONTROLBAR:DropNapalmBomb":                       [3, 0],
+        "CONTROLBAR:UpgradeChinaHelixGattlingCannon":      [3, 1],
+        "CONTROLBAR:UpgradeChinaHelixBattleBunker":        [3, 2],
+        "CONTROLBAR:UpgradeChinaHelixPropagandaTower":     [3, 3],
+        "CONTROLBAR:UpgradeHelixNapalmBomb":               [3, 4],
+        "CONTROLBAR:Evacuate":                             [3, 5]
+    },
+    "ActiveActions/China/Vanilla/Building Actions": {
+        "CONTROLBAR:Overcharge":     [0, 0],
+        "Command_UpgradeChinaMines": [0, 1],
+        "CONTROLBAR:Sell":           [0, 2],
+        "CONTROLBAR:SetRallyPoint":  [0, 3],
+        "CONTROLBAR:Evacuate":       [0, 4]
+    },
+    "ActiveActions/China/Vanilla/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":      [0, 0],
+        "CONTROLBAR:TNTAttack":            [0, 1],
+        "CONTROLBAR:InternetHack":         [0, 2],
+
+        "CONTROLBAR:DisableBuildingHack":  [1, 0],
+        "CONTROLBAR:DisableVehicleHack":   [1, 1],
+        "CONTROLBAR:StealCashHack":        [1, 2]
+    },
+
+
+
+    "ActiveActions/China/Tank/Unit Actions": {
+        "CONTROLBAR:AttackMove":                           [0, 0],
+        "CONTROLBAR:Guard":                                [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                 [0, 2],
+        "CONTROLBAR:Stop":                                 [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                [0, 4],
+
+        "CONTROLBAR:FireWall":                             [1, 0],
+        "CONTROLBAR:ECMDisableVehicle":                    [1, 1],
+
+        "CONTROLBAR:UpgradeChinaOverlordGattlingCannon":   [2, 0],
+        "CONTROLBAR:UpgradeChinaOverlordPropagandaTower":  [2, 1],
+        "CONTROLBAR:UpgradeChinaOverlordBattleBunker":     [2, 2],
+
+        "CONTROLBAR:DropNapalmBomb":                       [3, 0],
+        "CONTROLBAR:UpgradeChinaHelixGattlingCannon":      [3, 1],
+        "CONTROLBAR:UpgradeChinaHelixBattleBunker":        [3, 2],
+        "CONTROLBAR:UpgradeChinaHelixPropagandaTower":     [3, 3],
+        "CONTROLBAR:UpgradeHelixNapalmBomb":               [3, 4],
+        "CONTROLBAR:Evacuate":                             [3, 5]
+    },
+    "ActiveActions/China/Tank/Building Actions": {
+        "CONTROLBAR:Overcharge":     [0, 0],
+        "Command_UpgradeChinaMines": [0, 1],
+        "CONTROLBAR:Sell":           [0, 2],
+        "CONTROLBAR:SetRallyPoint":  [0, 3],
+        "CONTROLBAR:Evacuate":       [0, 4]
+    },
+    "ActiveActions/China/Tank/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":      [0, 0],
+        "CONTROLBAR:TNTAttack":            [0, 1],
+        "CONTROLBAR:InternetHack":         [0, 2],
+
+        "CONTROLBAR:DisableBuildingHack":  [1, 0],
+        "CONTROLBAR:DisableVehicleHack":   [1, 1],
+        "CONTROLBAR:StealCashHack":        [1, 2]
+    },
+
+
+
+    "ActiveActions/China/Infantry/Unit Actions": {
+        "CONTROLBAR:AttackMove":                           [0, 0],
+        "CONTROLBAR:Guard":                                [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                 [0, 2],
+        "CONTROLBAR:Stop":                                 [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                [0, 4],
+
+        "CONTROLBAR:FireWall":                             [1, 0],
+        "CONTROLBAR:ECMDisableVehicle":                    [1, 1],
+        "CONTROLBAR:NeutronWarhead":                       [1, 2],
+        "CONTROLBAR:NukeWarhead":                          [1, 3],
+
+        "CONTROLBAR:UpgradeChinaHelixBattleBunker":        [2, 0],
+        "CONTROLBAR:DropNapalmBomb":                       [2, 1],
+        "CONTROLBAR:UpgradeHelixNapalmBomb":               [2, 2],
+        "CONTROLBAR:Evacuate":                             [2, 3]
+    },
+    "ActiveActions/China/Infantry/Building Actions": {
+        "CONTROLBAR:Overcharge":     [0, 0],
+        "Command_UpgradeChinaMines": [0, 1],
+        "CONTROLBAR:Sell":           [0, 2],
+        "CONTROLBAR:SetRallyPoint":  [0, 3],
+        "CONTROLBAR:Evacuate":       [0, 4]
+    },
+    "ActiveActions/China/Infantry/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":      [0, 0],
+        "CONTROLBAR:TNTAttack":            [0, 1],
+        "CONTROLBAR:InternetHack":         [0, 2],
+
+        "CONTROLBAR:DisableBuildingHack":  [1, 0],
+        "CONTROLBAR:DisableVehicleHack":   [1, 1],
+        "CONTROLBAR:StealCashHack":        [1, 2]
+    },
+
+
+
+    "ActiveActions/China/Nuclear/Unit Actions": {
+        "CONTROLBAR:AttackMove":                           [0, 0],
+        "CONTROLBAR:Guard":                                [0, 1],
+        "CONTROLBAR:GuardFlyingUnitsOnly":                 [0, 2],
+        "CONTROLBAR:Stop":                                 [0, 3],
+        "CONTROLBAR:DisarmMinesAtPosition":                [0, 4],
+
+        "CONTROLBAR:FireWall":                             [1, 0],
+        "CONTROLBAR:ECMDisableVehicle":                    [1, 1],
+        "CONTROLBAR:NeutronWarhead":                       [1, 2],
+        "CONTROLBAR:NukeWarhead":                          [1, 3],
+
+        "CONTROLBAR:UpgradeChinaOverlordGattlingCannon":   [2, 0],
+        "CONTROLBAR:UpgradeChinaOverlordPropagandaTower":  [2, 1],
+        "CONTROLBAR:UpgradeChinaOverlordBattleBunker":     [2, 2],
+
+        "CONTROLBAR:DropNukeBomb":                         [3, 0],
+        "CONTROLBAR:UpgradeChinaHelixGattlingCannon":      [3, 1],
+        "CONTROLBAR:UpgradeChinaHelixBattleBunker":        [3, 2],
+        "CONTROLBAR:UpgradeChinaHelixPropagandaTower":     [3, 3],
+        "CONTROLBAR:UpgradeHelixNukeBomb":                 [3, 4],
+        "CONTROLBAR:Evacuate":                             [3, 5]
+    },
+    "ActiveActions/China/Nuclear/Building Actions": {
+        "CONTROLBAR:Overcharge":     [0, 0],
+        "Command_UpgradeChinaMines": [0, 1],
+        "CONTROLBAR:Sell":           [0, 2],
+        "CONTROLBAR:SetRallyPoint":  [0, 3],
+        "CONTROLBAR:Evacuate":       [0, 4]
+    },
+    "ActiveActions/China/Nuclear/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":      [0, 0],
+        "CONTROLBAR:TNTAttack":            [0, 1],
+        "CONTROLBAR:InternetHack":         [0, 2],
+
+        "CONTROLBAR:DisableBuildingHack":  [1, 0],
+        "CONTROLBAR:DisableVehicleHack":   [1, 1],
+        "CONTROLBAR:StealCashHack":        [1, 2]
+    },
+
+
+
+    "ActiveActions/GLA/Vanilla/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:Stop":                                  [0, 2],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 3],
+        "CONTROLBAR:Evacuate":                              [0, 4],
+
+        "CONTROLBAR:Contaminate":                           [1, 0],
+        "CONTROLBAR:RadarVanScan":                          [1, 1],
+        "CONTROLBAR:AnthraxWarhead":                        [1, 2],
+        "CONTROLBAR:ExplosiveWarhead":                      [1, 3],
+
+        "CONTROLBAR:DisguiseAsVehicle":                     [2, 0],
+        "CONTROLBAR:DetonateBombTruck":                     [2, 1],
+        "CONTROLBAR:UpgradeGLABombTruckBioBomb":            [2, 2],
+        "CONTROLBAR:UpgradeGLABombTruckHighExplosiveBomb":  [2, 3]
+    },
+    "ActiveActions/GLA/Vanilla/Building Actions": {
+        "CONTROLBAR:Sell":                  [0, 0],
+        "CONTROLBAR:SetRallyPoint":         [0, 1],
+        "CONTROLBAR:Evacuate":              [0, 2],
+        "CONTROLBAR:DetonateFakeBuilding":  [0, 3],
+        "Command_UpgradeGLACamoNetting":    [0, 4],
+
+        "CONTROLBAR:ProximityFuse":         [1, 0],
+        "CONTROLBAR:ManualControl":         [1, 1],
+        "CONTROLBAR:Detonate":              [1, 2]
+    },
+    "ActiveActions/GLA/Vanilla/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":                 [0, 0],
+        "CONTROLBAR:BoobyTrapAttack":                 [0, 1],
+        "CONTROLBAR:SniperAttack":                    [0, 2],
+
+        "CONTROLBAR:Hijack":                          [1, 0],
+        "CONTROLBAR:SabotageBuilding":                [1, 1],
+        "CONTROLBAR:CarBomb":                         [1, 2]
+    },
+
+
+
+    "ActiveActions/GLA/Toxin/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:Stop":                                  [0, 2],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 3],
+        "CONTROLBAR:Evacuate":                              [0, 4],
+
+        "CONTROLBAR:Contaminate":                           [1, 0],
+        "CONTROLBAR:RadarVanScan":                          [1, 1],
+
+        "CONTROLBAR:DisguiseAsVehicle":                     [2, 0],
+        "CONTROLBAR:DetonateBombTruck":                     [2, 1],
+        "CONTROLBAR:UpgradeGLABombTruckBioBomb":            [2, 2]
+    },
+    "ActiveActions/GLA/Toxin/Building Actions": {
+        "CONTROLBAR:Sell":                  [0, 0],
+        "CONTROLBAR:SetRallyPoint":         [0, 1],
+        "CONTROLBAR:Evacuate":              [0, 2],
+        "CONTROLBAR:DetonateFakeBuilding":  [0, 3],
+
+        "CONTROLBAR:ProximityFuse":         [1, 0],
+        "CONTROLBAR:ManualControl":         [1, 1],
+        "CONTROLBAR:Detonate":              [1, 2]
+    },
+    "ActiveActions/GLA/Toxin/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":                 [0, 0],
+        "CONTROLBAR:SniperAttack":                    [0, 1],
+        "CONTROLBAR:CarBomb":                         [0, 2]
+    },
+
+
+
+    "ActiveActions/GLA/Stealth/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:Stop":                                  [0, 2],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 3],
+        "CONTROLBAR:Evacuate":                              [0, 4],
+
+        "CONTROLBAR:Contaminate":                           [1, 0],
+        "CONTROLBAR:RadarVanScan":                          [1, 1],
+
+        "CONTROLBAR:DisguiseAsVehicle":                     [2, 0],
+        "CONTROLBAR:DetonateBombTruck":                     [2, 1],
+        "CONTROLBAR:UpgradeGLABombTruckBioBomb":            [2, 2],
+        "CONTROLBAR:UpgradeGLABombTruckHighExplosiveBomb":  [2, 3]
+    },
+    "ActiveActions/GLA/Stealth/Building Actions": {
+        "CONTROLBAR:Sell":                  [0, 0],
+        "CONTROLBAR:SetRallyPoint":         [0, 1],
+        "CONTROLBAR:Evacuate":              [0, 2],
+        "CONTROLBAR:DetonateFakeBuilding":  [0, 3],
+        "Command_UpgradeGLACamoNetting":    [0, 4],
+
+        "CONTROLBAR:ProximityFuse":         [1, 0],
+        "CONTROLBAR:ManualControl":         [1, 1],
+        "CONTROLBAR:Detonate":              [1, 2]
+    },
+    "ActiveActions/GLA/Stealth/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":                 [0, 0],
+        "CONTROLBAR:BoobyTrapAttack":                 [0, 1],
+        "CONTROLBAR:SniperAttack":                    [0, 2],
+
+        "CONTROLBAR:Hijack":                          [1, 0],
+        "CONTROLBAR:SabotageBuilding":                [1, 1],
+        "CONTROLBAR:CarBomb":                         [1, 2]
+    },
+
+
+
+    "ActiveActions/GLA/Demolition/Unit Actions": {
+        "CONTROLBAR:AttackMove":                            [0, 0],
+        "CONTROLBAR:Guard":                                 [0, 1],
+        "CONTROLBAR:Stop":                                  [0, 2],
+        "CONTROLBAR:DisarmMinesAtPosition":                 [0, 3],
+        "CONTROLBAR:Evacuate":                              [0, 4],
+
+        "CONTROLBAR:SuicideAttack":                         [1, 0],
+        "CONTROLBAR:Contaminate":                           [1, 1],
+        "CONTROLBAR:RadarVanScan":                          [1, 2],
+
+        "CONTROLBAR:DisguiseAsVehicle":                     [2, 0],
+        "CONTROLBAR:DetonateBombTruck":                     [2, 1],
+        "CONTROLBAR:UpgradeGLABombTruckHighExplosiveBomb":  [2, 2]
+    },
+    "ActiveActions/GLA/Demolition/Building Actions": {
+        "CONTROLBAR:Sell":                  [0, 0],
+        "CONTROLBAR:SetRallyPoint":         [0, 1],
+        "CONTROLBAR:Evacuate":              [0, 2],
+        "CONTROLBAR:DetonateFakeBuilding":  [0, 3],
+
+        "CONTROLBAR:ProximityFuse":         [1, 0],
+        "CONTROLBAR:ManualControl":         [1, 1],
+        "CONTROLBAR:Detonate":              [1, 2]
+    },
+    "ActiveActions/GLA/Demolition/Infantry Actions": {
+        "CONTROLBAR:CaptureBuilding":                 [0, 0],
+        "CONTROLBAR:BoobyTrapAttack":                 [0, 1],
+        "CONTROLBAR:SuicideAttack":                   [0, 2],
+        "CONTROLBAR:CarBomb":                         [0, 3],
+
+        "CONTROLBAR:SniperAttack":                    [1, 0],
+        "CONTROLBAR:TimedDemoCharge":                 [1, 1],
+        "CONTROLBAR:RemoteDemoCharge":                [1, 2],
+        "CONTROLBAR:DetonateCharges":                 [1, 3]
     }
 }

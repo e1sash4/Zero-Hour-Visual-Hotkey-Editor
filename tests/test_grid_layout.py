@@ -42,3 +42,16 @@ def test_vanilla_gla_override_matches_reference_order():
     assert positions[arms.identity] == (0, 4)
     assert positions[demo.identity] == (1, 0)
     assert positions[tunnel.identity] == (0, 3)
+
+
+def test_active_action_layout_supports_a_third_row():
+    button = CommandButton(
+        "Command_ConstructAmericaVehicleScoutDrone",
+        text_label="CONTROLBAR:ConstructAmericaVehicleScoutDrone",
+    )
+    context = CommandContext(
+        "USA", "Vanilla", "ActiveActions/USA/Vanilla/Unit Actions", "Unit Actions",
+        "AmericaVehicleHumveeCommandSet", 11, button, display_name="Scout Drone",
+    )
+
+    assert command_grid_positions([context])[context.identity] == (2, 2)

@@ -40,6 +40,7 @@ The editor reads the installed game, recreates its command-bar structure, extrac
 
 - Browse commands using the game's real locally extracted unit, building, upgrade, and ability icons.
 - Navigate by faction, general, and producer instead of internal INI or CSF identifiers.
+- Use dedicated **Unit Actions**, **Building Actions**, and **Infantry Actions** pages for every official general.
 - Keep command buttons in their in-game command-bar positions.
 - Search for commands such as Humvee, Raptor, Overlord, Tunnel Network, and more.
 - See producer icons, faction emblems, general portraits, and dedicated General Powers categories.
@@ -99,6 +100,10 @@ Command-bar hotkeys and global controls are both supported. The Global Hotkeys w
 - New CSF and CommandMap files are validated before replacing an existing override.
 - Writes use temporary files and atomic replacement.
 - Restore the latest backup or return to the archive-provided original.
+- If Windows blocks writes to a protected game folder, the editor preserves the
+  finished configuration and offers to restart with administrator privileges.
+  If elevated installation is still blocked, it opens the saved files and shows
+  the exact game paths where they can be copied manually.
 - The original BIG archives are never modified or repacked.
 
 ### Profiles, languages, and themes
@@ -140,7 +145,7 @@ The Zero Hour theme changes its colors and visual accents to match the currently
 ### Download a Windows release
 
 1. Open the [Releases page](https://github.com/e1sash4/Zero-Hour-Visual-Hotkey-Editor/releases).
-2. Download `ZeroHourHotkeyEditor-v0.2.0-Windows.zip` (or the newest available version).
+2. Download `ZeroHourHotkeyEditor-v0.3.0-Windows.zip` (or the newest available version).
 3. Extract the **entire** archive to a normal folder.
 4. Run `ZeroHourHotkeyEditor.exe` from the extracted folder.
 
@@ -165,7 +170,7 @@ Indexing runs in the background, so the interface remains responsive. Cached ico
 
 1. Select **USA**, **China**, or **GLA**.
 2. Select the vanilla faction or one of its three generals.
-3. Choose a producer, building, or **General Powers**.
+3. Choose a producer, **General Powers**, **Unit Actions**, **Building Actions**, or **Infantry Actions**.
 4. Click the command you want to edit.
 5. Press a key on the physical or virtual keyboard.
 6. Resolve a conflict if the selected key is already used in the same context.
@@ -223,6 +228,13 @@ The stock command database is discovered from the game automatically. Two small 
 
 - `data/overrides/producers.json` controls which producer CommandSets are shown for each faction and general, as well as their order.
 - `data/overrides/layouts.json` controls visible commands and their `[row, column]` positions inside a CommandSet.
+
+The aggregated Unit, Building and Infantry pages use per-general identifiers
+such as `ActiveActions/USA/Air Force/Unit Actions`. Remove that identifier from one general in
+`producers.json` to hide the whole page. In `layouts.json`, remove a
+`CONTROLBAR:` entry to hide one action, or change its coordinates; rows `0`,
+`1` and `2` provide the supported three-row layout. Each official general has
+its own independent block.
 
 These files contain technical identifiers only; they do not contain copyrighted textures or localized game text. They can be edited to correct a position, hide a command unavailable to a particular general, or add a valid command discovered in the installed game data.
 

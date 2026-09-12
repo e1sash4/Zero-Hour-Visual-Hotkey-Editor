@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import json
-from functools import lru_cache
 from pathlib import Path
 
 from PySide6.QtCore import Signal
@@ -11,7 +10,6 @@ from models import CommandContext
 from .command_card import CommandCard
 
 
-@lru_cache(maxsize=1)
 def _layout_overrides() -> dict[str, dict[str, list[int]]]:
     path = Path(__file__).resolve().parents[1] / "data/overrides/layouts.json"
     try:
@@ -38,10 +36,21 @@ def command_grid_positions(contexts: list[CommandContext]) -> dict[str, tuple[in
         if context.slot in fixed:
             positions[context.identity] = fixed[context.slot]
     if contexts:
-        override = _layout_overrides().get(contexts[0].command_set_id, {})
+        first = contexts[0]
+        layouts = _layout_overrides()
+        if first.producer_id.startswith("ActiveActions/"):
+            specific = f"ActiveActions/{first.faction}/{first.general}/{first.producer_name}"
+            override = layouts.get(specific, {})
+        else:
+            override = layouts.get(first.command_set_id, {})
+        folded_override = {key.casefold(): position for key, position in override.items()}
         for context in contexts:
-            if context.button.id in override:
-                row, column = override[context.button.id]
+            position = folded_override.get(
+                context.button.id.casefold(),
+                folded_override.get(context.button.text_label.casefold()),
+            )
+            if position is not None:
+                row, column = position
                 positions[context.identity] = (int(row), int(column))
     return positions
 

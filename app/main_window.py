@@ -22,6 +22,10 @@ from core.indexer import CsfLoadError, GameIndexer
 from core.mouse_bindings import MouseBindingStore
 from core.mouse_remapper import MouseRemapper
 from core.profile_manager import Profile, ProfileManager
+from core.write_recovery import (
+    create_recovery_package, is_access_error, is_running_as_admin,
+    manual_copy_instructions, restart_as_admin,
+)
 from models import CommandContext
 from ui.command_grid import CommandGrid
 from ui.conflict_dialog import ask_conflict
@@ -48,6 +52,11 @@ GENERAL_ICONS = {
               "Infantry": "InfantryGeneral_blue", "Nuclear": "NukeGeneral_blue"},
     "GLA": {"Vanilla": "SUFactionLogo96_GLA", "Toxin": "ToxinGeneral_blue",
             "Stealth": "StealthGeneral_blue", "Demolition": "DemoGeneral_blue"},
+}
+ACTION_GROUP_KEYS = {
+    "Unit Actions": "unit_actions",
+    "Building Actions": "building_actions",
+    "Infantry Actions": "infantry_actions",
 }
 
 
@@ -338,20 +347,28 @@ class MainWindow(QMainWindow):
                            "Airfield", "Strategy Center", "Propaganda Center", "Palace", "Black Market",
                            "Supply Center", "Supply Stash")
         def producer_order(name: str) -> tuple[int, str]:
+            if name in ACTION_GROUP_KEYS:
+                return list(ACTION_GROUP_KEYS).index(name), name
             if name == "General Powers":
                 return 1000, name
-            return next((index for index, token in enumerate(preferred_names) if token.casefold() in name.casefold()), 99), name
+            return 10 + next((index for index, token in enumerate(preferred_names)
+                              if token.casefold() in name.casefold()), 99), name
         producers = sorted({c.producer_name for c in contexts}, key=producer_order)
         self.producer_list.blockSignals(True)
         self.producer_list.clear()
         for producer in producers:
-            display_producer = tr("general_powers") if producer == "General Powers" else producer
+            if producer in ACTION_GROUP_KEYS:
+                display_producer = tr(ACTION_GROUP_KEYS[producer])
+            else:
+                display_producer = tr("general_powers") if producer == "General Powers" else producer
             item = QListWidgetItem(display_producer)
             item.setData(Qt.ItemDataRole.UserRole, producer)
             context = next((c for c in contexts if c.producer_name == producer), None)
             obj = self.db.objects.get(context.producer_id) if context else None
             if context and context.producer_id == "__general_powers__":
                 image_id = GENERAL_ICONS[context.faction][context.general]
+            elif context and producer in ACTION_GROUP_KEYS:
+                image_id = context.button.button_image
             else:
                 image_id = obj.fields.get("ButtonImage", "") if obj else ""
             icon_path = self.assets.get_icon(image_id) if self.assets and image_id else None
@@ -371,7 +388,8 @@ class MainWindow(QMainWindow):
         if not producer or not self.hotkeys:
             return
         contexts = [c for c in self._filtered() if c.producer_name == producer]
-        self.breadcrumb.setText(f"{self.faction}  →  {self.general.currentText()}  →  {producer}")
+        display_producer = tr(ACTION_GROUP_KEYS[producer]) if producer in ACTION_GROUP_KEYS else producer
+        self.breadcrumb.setText(f"{self.faction}  →  {self.general.currentText()}  →  {display_producer}")
         self.grid.populate(contexts, self.hotkeys.get_hotkey, self.developer)
         self.current_context = None
         self.capture_active = False
@@ -587,6 +605,11 @@ class MainWindow(QMainWindow):
     def apply_changes(self) -> None:
         if not self.hotkeys or (not self.hotkeys.pending and not self.command_map_pending):
             return
+        recovery_files = {}
+        if self.hotkeys.pending:
+            recovery_files["generals.csf"] = self.hotkeys.materialize().to_bytes()
+        if self.command_map_pending and self.command_map:
+            recovery_files["CommandMap.ini"] = self.command_map.to_text().encode("utf-8")
         try:
             backups = []
             if self.hotkeys.pending:
@@ -603,7 +626,54 @@ class MainWindow(QMainWindow):
             QMessageBox.information(self, tr("applied"), tr("applied_text", backup="\n".join(map(str, backups))))
         except Exception as exc:
             logging.exception("Apply failed")
-            QMessageBox.critical(self, tr("apply_failed"), tr("apply_failed_text", error=exc))
+            if is_access_error(exc):
+                self.handle_write_access_error(exc, recovery_files)
+            else:
+                QMessageBox.critical(self, tr("apply_failed"), tr("apply_failed_text", error=exc))
+
+    def handle_write_access_error(self, error: Exception, files: dict[str, bytes]) -> None:
+        """Offer elevation and retain install-ready files for manual recovery."""
+        try:
+            package = create_recovery_package(self.app_root, self.game_dir, files)
+        except Exception as package_error:
+            logging.exception("Could not create manual config package")
+            QMessageBox.critical(
+                self, tr("apply_failed"), tr("apply_failed_text", error=package_error),
+            )
+            return
+
+        box = QMessageBox(self)
+        box.setIcon(QMessageBox.Icon.Warning)
+        box.setWindowTitle(tr("write_access_denied"))
+        box.setText(tr(
+            "write_access_denied_admin_text" if is_running_as_admin() else "write_access_denied_text",
+            game=self.game_dir, error=error,
+        ))
+        admin_button = None
+        if not is_running_as_admin():
+            admin_button = box.addButton(tr("restart_as_admin"), QMessageBox.ButtonRole.AcceptRole)
+        manual_button = box.addButton(tr("save_for_manual_copy"), QMessageBox.ButtonRole.ActionRole)
+        box.addButton(tr("cancel"), QMessageBox.ButtonRole.RejectRole)
+        box.exec()
+
+        if admin_button is not None and box.clickedButton() is admin_button:
+            try:
+                if restart_as_admin(package):
+                    QApplication.quit()
+                    return
+            except Exception:
+                logging.exception("Could not restart as administrator")
+            self._show_manual_copy(package, error)
+        elif box.clickedButton() is manual_button:
+            self._show_manual_copy(package, error)
+
+    def _show_manual_copy(self, package: Path, error: Exception) -> None:
+        instructions = manual_copy_instructions(package)
+        QMessageBox.information(
+            self, tr("manual_config_saved"),
+            tr("manual_copy_text", folder=package, files=instructions, error=error),
+        )
+        QDesktopServices.openUrl(QUrl.fromLocalFile(str(package)))
 
     def _apply_csf_changes(self) -> Path:
         if not self.hotkeys or not self.hotkeys.pending:
